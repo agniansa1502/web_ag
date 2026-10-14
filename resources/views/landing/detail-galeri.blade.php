@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 
@@ -6,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>{{ $galeri->judul ?? 'Detail Galeri' }} - MTS AL MUAWANAH</title>
+    <title>{{ $galeri->judul ?? 'Detail Galeri' }} - MTs Al Muawanah</title>
 
     <style>
         * {
@@ -18,7 +17,7 @@
         html {
             min-height: 100%;
             scroll-behavior: smooth;
-            background: #123c8c;
+            background: #075c36;
         }
 
         body {
@@ -26,7 +25,7 @@
             display: flex;
             flex-direction: column;
             font-family: Arial, Helvetica, sans-serif;
-            background: #f4f7fc;
+            background: #f4f8f5;
             color: #263247;
             line-height: 1.7;
         }
@@ -35,7 +34,7 @@
             transition: .25s ease;
         }
 
-        /* ================= NAVBAR ================= */
+        /* NAVBAR */
         .navbar {
             width: 100%;
             background: #fff;
@@ -75,7 +74,7 @@
         }
 
         .brand-name {
-            color: #123c8c;
+            color: #087443;
             font-size: 17px;
             font-weight: bold;
             line-height: 1.4;
@@ -87,21 +86,9 @@
             letter-spacing: .8px;
         }
 
-        .home-link {
-            color: #1265e8;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: bold;
-            white-space: nowrap;
-        }
-
-        .home-link:hover {
-            color: #0d4fb8;
-        }
-
-        /* ================= HEADER ================= */
+        /* HEADER */
         .page-heading {
-            background: linear-gradient(135deg, #123c8c, #176de0);
+            background: linear-gradient(135deg, #075c36, #0ca968);
             padding: 35px 20px;
             text-align: center;
             color: #fff;
@@ -114,10 +101,10 @@
 
         .page-heading p {
             font-size: 14px;
-            color: #e5edff;
+            color: #e5f7ec;
         }
 
-        /* ================= CONTAINER ================= */
+        /* CONTAINER */
         .container {
             width: 100%;
             max-width: 1000px;
@@ -126,23 +113,23 @@
             flex: 1 0 auto;
         }
 
-        /* ================= DETAIL CARD ================= */
+        /* DETAIL CARD */
         .detail-card {
             background: #fff;
             border-radius: 16px;
             overflow: hidden;
-            border: 1px solid #e8edf5;
-            box-shadow: 0 8px 30px rgba(18, 60, 140, .09);
+            border: 1px solid #e1eee5;
+            box-shadow: 0 8px 30px rgba(8, 116, 67, .09);
         }
 
-        /* ================= FOTO GALERI ================= */
+        /* FOTO GALERI */
         .detail-image {
             display: block;
             width: 100%;
             height: 420px;
             object-fit: cover;
             object-position: center;
-            background: #e8eef8;
+            background: #e7f2e9;
         }
 
         .no-image {
@@ -154,7 +141,7 @@
             flex-direction: column;
             gap: 8px;
             color: #fff;
-            background: linear-gradient(135deg, #123c8c, #2878d8);
+            background: linear-gradient(135deg, #087443, #0ca968);
         }
 
         .no-image strong {
@@ -166,7 +153,7 @@
             font-size: 14px;
         }
 
-        /* ================= ISI DETAIL ================= */
+        /* ISI DETAIL */
         .detail-content {
             padding: 35px;
         }
@@ -176,15 +163,15 @@
             padding: 6px 13px;
             margin-bottom: 14px;
             border-radius: 20px;
-            background: #e8f1ff;
-            color: #1265e8;
+            background: #e5f5eb;
+            color: #087443;
             font-size: 12px;
             font-weight: bold;
             letter-spacing: .4px;
         }
 
         .detail-title {
-            color: #123c8c;
+            color: #075c36;
             font-size: 32px;
             line-height: 1.4;
             overflow-wrap: anywhere;
@@ -200,9 +187,9 @@
             margin-bottom: 30px;
         }
 
-        /* ================= INFORMASI GALERI ================= */
+        /* INFORMASI GALERI */
         .info-title {
-            color: #123c8c;
+            color: #075c36;
             font-size: 21px;
             margin-bottom: 18px;
         }
@@ -215,9 +202,9 @@
 
         .info-box {
             padding: 17px 19px;
-            background: #f7f9fd;
-            border: 1px solid #e4eaf4;
-            border-left: 4px solid #176de0;
+            background: #f5faf6;
+            border: 1px solid #e1eee5;
+            border-left: 4px solid #0ca968;
             border-radius: 10px;
             min-width: 0;
         }
@@ -237,7 +224,7 @@
             white-space: pre-line;
         }
 
-        /* ================= TOMBOL ================= */
+        /* TOMBOL */
         .button-area {
             display: flex;
             flex-wrap: wrap;
@@ -257,29 +244,29 @@
 
         .btn-back {
             color: #fff;
-            background: #1265e8;
+            background: #087443;
         }
 
         .btn-back:hover {
-            background: #0d4fb8;
+            background: #075c36;
             transform: translateY(-2px);
         }
 
         .btn-home {
-            color: #123c8c;
-            background: #e8f1ff;
+            color: #087443;
+            background: #e5f5eb;
         }
 
         .btn-home:hover {
-            background: #d8e7ff;
+            background: #d2eddd;
         }
 
-        /* ================= FOOTER ================= */
+        /* FOOTER */
         .footer {
             width: 100%;
             margin-top: auto;
             flex-shrink: 0;
-            background: #123c8c;
+            background: #075c36;
             color: #fff;
             padding: 40px 7% 18px;
         }
@@ -314,7 +301,7 @@
 
         .footer-description,
         .footer-contact {
-            color: #dce7f7;
+            color: #dcefe3;
             font-size: 13px;
             line-height: 1.9;
             overflow-wrap: anywhere;
@@ -334,7 +321,7 @@
         }
 
         .footer-links a {
-            color: #dce7f7;
+            color: #dcefe3;
             text-decoration: none;
             font-size: 13px;
         }
@@ -351,11 +338,11 @@
             padding-top: 17px;
             border-top: 1px solid rgba(255, 255, 255, .2);
             text-align: center;
-            color: #dce7f7;
+            color: #dcefe3;
             font-size: 12px;
         }
 
-        /* ================= RESPONSIVE ================= */
+        /* RESPONSIVE */
         @media (max-width: 768px) {
             .navbar {
                 padding: 12px 20px;
@@ -372,10 +359,6 @@
 
             .brand-subtitle {
                 font-size: 8px;
-            }
-
-            .home-link {
-                font-size: 12px;
             }
 
             .page-heading {
@@ -436,11 +419,6 @@
                 letter-spacing: 0;
             }
 
-            .home-link {
-                font-size: 11px;
-                text-align: right;
-            }
-
             .detail-image {
                 height: 220px;
             }
@@ -462,7 +440,7 @@
 
 <body>
 
-    {{-- ================= NAVBAR ================= --}}
+    {{-- NAVBAR --}}
     <nav class="navbar">
         <div class="navbar-content">
 
@@ -471,21 +449,21 @@
                 @if(isset($profil) && !empty($profil->logo))
                     <img
                         src="{{ asset('storage/' . $profil->logo) }}"
-                        alt="Logo MTS AL MUAWANAH"
+                        alt="Logo MTs Al Muawanah"
                         class="brand-logo"
-                        onerror="this.onerror=null; this.src='{{ asset('img/LOGO SMK 1 NEGRI JAKARTA.jpg') }}';"
+                        onerror="this.onerror=null; this.src='{{ asset('img/logo_alma.jpg') }}';"
                     >
                 @else
                     <img
                         src="{{ asset('img/logo_alma.jpg') }}"
-                        alt="Logo MTS AL MUAWANAH"
+                        alt="Logo MTs Al Muawanah"
                         class="brand-logo"
                     >
                 @endif
 
                 <div class="brand-text">
                     <span class="brand-name">
-                        MTS AL MUAWANAh
+                        MTs AL MUAWANAH
                     </span>
 
                     <span class="brand-subtitle">
@@ -495,13 +473,16 @@
 
             </a>
 
-
-
         </div>
     </nav>
 
+    {{-- HEADER --}}
+    <section class="page-heading">
+        <h1>Detail Galeri Sekolah</h1>
+        <p>Dokumentasi kegiatan MTs Al Muawanah</p>
+    </section>
 
-    {{-- ================= DETAIL GALERI ================= --}}
+    {{-- DETAIL GALERI --}}
     <main class="container">
 
         <article class="detail-card">
@@ -559,7 +540,7 @@
 
                     <div class="info-box">
                         <span>Nama Sekolah</span>
-                        <strong>MTS AL MUAWANAH</strong>
+                        <strong>MTs Al Muawanah</strong>
                     </div>
 
                     <div class="info-box">
@@ -594,7 +575,7 @@
 
     </main>
 
-
+    {{-- FOOTER --}}
     <footer class="footer">
 
         <div class="footer-container">
@@ -606,20 +587,20 @@
 
                     <img
                         src="{{ asset('img/logo_alma.jpg') }}"
-                        alt="Logo MTS AL MUAWANAH"
+                        alt="Logo MTs Al Muawanah"
                         class="footer-logo"
                     >
 
                     <div class="footer-school">
-                        MTS AL MUAWANAH
+                        MTs AL MUAWANAH
                     </div>
 
                 </div>
 
                 <p class="footer-description">
-                    Sekolah yang berkomitmen dalam memberikan pendidikan
+                    MTs Al Muawanah berkomitmen memberikan pendidikan
                     berkualitas untuk membentuk generasi yang cerdas,
-                    terampil, dan berkarakter.
+                    terampil, berakhlak mulia, dan berkarakter.
                 </p>
 
             </div>
@@ -632,8 +613,8 @@
                 <ul class="footer-links">
                     <li><a href="{{ url('/') }}">Beranda</a></li>
                     <li><a href="{{ url('/') }}#profil">Profil</a></li>
-                    <li><a href="{{ url('/') }}#program">Program Keahlian</a></li>
-                    <li><a href="{{ url('/') }}#ekskul">Ekstrakurikuler</a></li>
+                    <li><a href="{{ url('/') }}#program">Program</a></li>
+                    <li><a href="{{ url('/') }}#ekstrakulikuler">Ekstrakulikuler</a></li>
                     <li><a href="{{ url('/') }}#berita">Berita</a></li>
                     <li><a href="{{ url('/') }}#galeri">Galeri</a></li>
                     <li><a href="{{ url('/') }}#prestasi">Prestasi</a></li>
@@ -648,7 +629,7 @@
 
                 <div class="footer-contact">
                     <div>📍 Jl. Ciheras, Tanjungjaya</div>
-                    <div>☎ (021) 381 3630 / (021) 350 4091</div>
+                    <div>☎ Hubungi pihak sekolah</div>
                     <div>✉ matsalma@gmail.com</div>
                 </div>
 
@@ -658,7 +639,7 @@
 
         <div class="footer-bottom">
             © {{ date('Y') }}
-            <strong>MTS AL MUAWANAH</strong>.
+            <strong>MTs Al Muawanah</strong>.
             Semua Hak Dilindungi.
         </div>
 
@@ -666,4 +647,3 @@
 
 </body>
 </html>
-

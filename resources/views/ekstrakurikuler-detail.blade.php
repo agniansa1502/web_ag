@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>{{ $ekskul->nama_ekskul }} - SMK NEGERI 1 JAKARTA</title>
+    <title>{{ $ekskul->nama_ekskul }} - MTs Al Muawanah</title>
 
     <style>
         * {
@@ -24,8 +24,8 @@
             display: flex;
             flex-direction: column;
             font-family: Arial, Helvetica, sans-serif;
-            background: #f5f7fb;
-            color: #263247;
+            background: #f4f9f6;
+            color: #263b30;
             line-height: 1.7;
         }
 
@@ -33,13 +33,14 @@
             text-decoration: none;
         }
 
-        /* ================= NAVBAR ================= */
+        /* NAVBAR */
 
         .navbar {
             width: 100%;
             background: #fff;
             padding: 12px 7%;
-            box-shadow: 0 3px 15px rgba(0, 0, 0, .08);
+            box-shadow: 0 3px 15px rgba(8, 116, 67, .10);
+            border-bottom: 3px solid #0ca968;
             flex-shrink: 0;
         }
 
@@ -73,29 +74,31 @@
         }
 
         .brand-name {
-            color: #123c8c;
+            color: #087443;
             font-size: 17px;
             font-weight: bold;
             line-height: 1.4;
         }
 
         .brand-subtitle {
-            color: #64748b;
+            color: #64786c;
             font-size: 10px;
             letter-spacing: .8px;
         }
 
         .home-link {
-            color: #1265e8;
+            color: #087443;
             font-size: 14px;
             font-weight: bold;
+            white-space: nowrap;
+            transition: .25s;
         }
 
         .home-link:hover {
-            color: #0d4fb8;
+            color: #0ca968;
         }
 
-        /* ================= KONTEN UTAMA ================= */
+        /* KONTEN UTAMA */
 
         main.container {
             width: 100%;
@@ -107,13 +110,13 @@
 
         .detail-card {
             background: #fff;
-            border: 1px solid #e5eaf2;
+            border: 1px solid #dcebe1;
             border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 8px 30px rgba(18, 60, 140, .10);
+            box-shadow: 0 8px 30px rgba(8, 116, 67, .09);
         }
 
-        /* ================= FOTO EKSTRAKURIKULER ================= */
+        /* FOTO EKSTRAKURIKULER */
 
         .detail-image {
             display: block;
@@ -121,7 +124,7 @@
             height: 420px;
             object-fit: cover;
             object-position: center;
-            background: #e8eef8;
+            background: #e5f2e9;
         }
 
         .no-image {
@@ -135,7 +138,7 @@
             padding: 25px;
             color: #fff;
             text-align: center;
-            background: linear-gradient(135deg, #123c8c, #176de0);
+            background: linear-gradient(135deg, #075c36, #0ca968);
         }
 
         .no-image strong {
@@ -147,7 +150,7 @@
             font-size: 14px;
         }
 
-        /* ================= DETAIL CONTENT ================= */
+        /* DETAIL CONTENT */
 
         .detail-content {
             padding: 35px;
@@ -157,8 +160,9 @@
             display: inline-block;
             padding: 6px 14px;
             margin-bottom: 14px;
-            color: #1265e8;
-            background: #e8f1ff;
+            color: #087443;
+            background: #e4f5eb;
+            border: 1px solid #c9ead6;
             border-radius: 25px;
             font-size: 12px;
             font-weight: bold;
@@ -167,7 +171,7 @@
 
         .detail-title {
             margin-bottom: 15px;
-            color: #123c8c;
+            color: #075c36;
             font-size: 32px;
             line-height: 1.4;
             overflow-wrap: anywhere;
@@ -175,7 +179,7 @@
 
         .detail-description {
             margin-bottom: 30px;
-            color: #596579;
+            color: #596b60;
             font-size: 15px;
             line-height: 1.9;
             overflow-wrap: anywhere;
@@ -183,15 +187,15 @@
         }
 
         .empty-description {
-            color: #7b8798;
+            color: #7b8b80;
             font-style: italic;
         }
 
-        /* ================= INFORMASI EKSTRAKURIKULER ================= */
+        /* INFORMASI EKSTRAKURIKULER */
 
         .section-title {
             margin-bottom: 18px;
-            color: #123c8c;
+            color: #075c36;
             font-size: 22px;
         }
 
@@ -204,35 +208,35 @@
         .info-box {
             min-width: 0;
             padding: 18px;
-            background: #f7f9fd;
-            border: 1px solid #e4eaf4;
+            background: #f6faf7;
+            border: 1px solid #dcebe1;
             border-radius: 10px;
             transition: .25s ease;
         }
 
         .info-box:hover {
-            background: #eff6ff;
-            border-color: #bfdbfe;
+            background: #eaf7ef;
+            border-color: #a7d9b9;
             transform: translateY(-2px);
         }
 
         .info-box span {
             display: block;
             margin-bottom: 5px;
-            color: #7b8798;
+            color: #718176;
             font-size: 13px;
         }
 
         .info-box strong {
             display: block;
-            color: #263247;
+            color: #263b30;
             font-size: 15px;
             font-weight: 600;
             overflow-wrap: anywhere;
             white-space: pre-line;
         }
 
-        /* ================= TOMBOL ================= */
+        /* TOMBOL */
 
         .button-area {
             display: flex;
@@ -255,32 +259,33 @@
 
         .btn-back {
             color: #fff;
-            background: #1265e8;
+            background: #087443;
         }
 
         .btn-back:hover {
             color: #fff;
-            background: #0d4fb8;
+            background: #075c36;
             transform: translateY(-2px);
         }
 
         .btn-home {
-            color: #123c8c;
-            background: #e8f1ff;
+            color: #087443;
+            background: #e4f5eb;
+            border: 1px solid #c9ead6;
         }
 
         .btn-home:hover {
-            background: #d5e5ff;
+            background: #d4efdf;
         }
 
-        /* ================= FOOTER ================= */
+        /* FOOTER */
 
         .footer {
             width: 100%;
             margin-top: auto;
             padding: 40px 7% 18px;
-            color: #fff;
-            background: #123c8c;
+            color: #e0f0e5;
+            background: #06472b;
             flex-shrink: 0;
         }
 
@@ -314,7 +319,7 @@
 
         .footer-description,
         .footer-contact {
-            color: #dce7f7;
+            color: #d1e7d9;
             font-size: 13px;
             line-height: 1.9;
             overflow-wrap: anywhere;
@@ -339,7 +344,7 @@
             width: 35px;
             height: 3px;
             border-radius: 5px;
-            background: #60a5fa;
+            background: #58d68d;
             content: "";
         }
 
@@ -352,13 +357,13 @@
         }
 
         .footer-links a {
-            color: #dce7f7;
+            color: #d1e7d9;
             font-size: 13px;
             transition: .2s;
         }
 
         .footer-links a:hover {
-            color: #fff;
+            color: #72e6a2;
             padding-left: 4px;
         }
 
@@ -366,13 +371,13 @@
             max-width: 1100px;
             margin: 28px auto 0;
             padding-top: 16px;
-            border-top: 1px solid rgba(255, 255, 255, .22);
-            color: #dce7f7;
+            border-top: 1px solid rgba(255, 255, 255, .18);
+            color: #d1e7d9;
             font-size: 12px;
             text-align: center;
         }
 
-        /* ================= RESPONSIVE ================= */
+        /* RESPONSIVE TABLET */
 
         @media (max-width: 768px) {
             main.container {
@@ -406,6 +411,8 @@
             }
         }
 
+        /* RESPONSIVE HP */
+
         @media (max-width: 500px) {
             .navbar {
                 padding: 12px 16px;
@@ -435,7 +442,6 @@
 
             .home-link {
                 font-size: 12px;
-                white-space: nowrap;
             }
 
             .detail-image {
@@ -502,7 +508,7 @@
 
 <body>
 
-    {{-- ================= NAVBAR ================= --}}
+    {{-- NAVBAR --}}
 
     <nav class="navbar">
         <div class="navbar-content">
@@ -510,14 +516,14 @@
             <a href="{{ url('/') }}" class="brand">
 
                 <img
-                    src="{{ asset('img/LOGO SMK 1 NEGRI JAKARTA.jpg') }}"
-                    alt="Logo SMK Negeri 1 Jakarta"
+                    src="{{ asset('img/logo_alma.jpg') }}"
+                    alt="Logo MTs Al Muawanah"
                     class="brand-logo"
                 >
 
                 <div class="brand-text">
                     <span class="brand-name">
-                        SMK NEGERI 1 JAKARTA
+                        MTs AL MUAWANAH
                     </span>
 
                     <span class="brand-subtitle">
@@ -534,7 +540,7 @@
         </div>
     </nav>
 
-    {{-- ================= KONTEN DETAIL ================= --}}
+    {{-- KONTEN DETAIL --}}
 
     <main class="container">
 
@@ -625,16 +631,12 @@
 
                     <div class="info-box">
                         <span>Nama Sekolah</span>
-                        <strong>
-                            SMK NEGERI 1 JAKARTA
-                        </strong>
+                        <strong>MTs AL MUAWANAH</strong>
                     </div>
 
                     <div class="info-box">
                         <span>Jenis Kegiatan</span>
-                        <strong>
-                            Ekstrakurikuler
-                        </strong>
+                        <strong>Ekstrakulikuler</strong>
                     </div>
 
                 </div>
@@ -647,7 +649,7 @@
                         href="{{ url('/#ekskul') }}"
                         class="btn btn-back"
                     >
-                        Kembali ke Ekstrakurikuler
+                        Kembali ke Ekstrakulikuler
                     </a>
 
                     <a
@@ -665,7 +667,7 @@
 
     </main>
 
-    {{-- ================= FOOTER ================= --}}
+    {{-- FOOTER --}}
 
     <footer class="footer">
 
@@ -678,21 +680,21 @@
                 <div class="footer-brand">
 
                     <img
-                        src="{{ asset('img/LOGO SMK 1 NEGRI JAKARTA.jpg') }}"
-                        alt="Logo SMK Negeri 1 Jakarta"
+                        src="{{ asset('img/logo_alma.jpg') }}"
+                        alt="Logo MTs Al Muawanah"
                         class="footer-logo"
                     >
 
                     <div class="footer-school">
-                        SMK NEGERI 1 JAKARTA
+                        MTs AL MUAWANAH
                     </div>
 
                 </div>
 
                 <p class="footer-description">
-                    Sekolah yang berkomitmen dalam memberikan pendidikan
+                    MTs Al Muawanah berkomitmen memberikan pendidikan
                     berkualitas untuk membentuk generasi yang cerdas,
-                    terampil, dan berkarakter.
+                    terampil, berakhlak mulia, dan berkarakter.
                 </p>
 
             </div>
@@ -720,11 +722,11 @@
                     </li>
 
                     <li>
-                        <a href="{{ url('/#program') }}">Program Keahlian</a>
+                        <a href="{{ url('/#program') }}">Program</a>
                     </li>
 
                     <li>
-                        <a href="{{ url('/#ekskul') }}">Ekstrakurikuler</a>
+                        <a href="{{ url('/#ekskul') }}">Ekstrakulikuler</a>
                     </li>
 
                     <li>
@@ -754,16 +756,15 @@
                 <div class="footer-contact">
 
                     <p>
-                        📍 Jl. Budi Utomo No. 7,
-                        Jakarta Pusat
+                        📍 {{ $profil->alamat ?? 'Alamat sekolah belum tersedia' }}
                     </p>
 
                     <p>
-                        ☎ (021) 381 3630 / (021) 350 4091
+                        ☎ {{ $profil->telepon ?? 'Telepon sekolah belum tersedia' }}
                     </p>
 
                     <p>
-                        ✉ smkn1jakarta@gmail.com
+                        ✉ {{ $profil->email ?? 'Email sekolah belum tersedia' }}
                     </p>
 
                 </div>
@@ -776,7 +777,7 @@
 
         <div class="footer-bottom">
             © {{ date('Y') }}
-            <strong>SMK NEGERI 1 JAKARTA</strong>.
+            <strong>MTs AL MUAWANAH</strong>.
             Semua Hak Dilindungi.
         </div>
 

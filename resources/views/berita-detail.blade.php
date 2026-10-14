@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>{{ $berita->judul }} - SMK NEGERI 1 JAKARTA</title>
+    <title>{{ $berita->judul }} - MTs Al Muawanah</title>
 
     <style>
         * {
@@ -21,7 +21,7 @@
 
         body {
             font-family: Arial, Helvetica, sans-serif;
-            background: #f5f7fb;
+            background: #f4f8f5;
             color: #263247;
             line-height: 1.7;
         }
@@ -74,7 +74,7 @@
 
         .brand-name {
             display: block;
-            color: #123c8c;
+            color: #087443;
             font-size: 17px;
             font-weight: bold;
             line-height: 1.4;
@@ -93,8 +93,8 @@
             justify-content: center;
             padding: 10px 16px;
             border-radius: 8px;
-            background: #e8f1ff;
-            color: #123c8c;
+            background: #e5f5eb;
+            color: #087443;
             font-size: 13px;
             font-weight: bold;
             white-space: nowrap;
@@ -102,7 +102,7 @@
         }
 
         .home-link:hover {
-            background: #1265e8;
+            background: #087443;
             color: #fff;
         }
 
@@ -123,7 +123,7 @@
         }
 
         .breadcrumb a {
-            color: #1265e8;
+            color: #087443;
         }
 
         .breadcrumb a:hover {
@@ -135,9 +135,9 @@
         .detail-card {
             overflow: hidden;
             background: #fff;
-            border: 1px solid #e8edf5;
+            border: 1px solid #e0ebe3;
             border-radius: 18px;
-            box-shadow: 0 8px 30px rgba(18, 60, 140, .09);
+            box-shadow: 0 8px 30px rgba(8, 116, 67, .09);
         }
 
         /* ================= FOTO BERITA ================= */
@@ -148,7 +148,7 @@
             height: 430px;
             object-fit: cover;
             object-position: center;
-            background: #e8eef8;
+            background: #e5f0e8;
         }
 
         .no-image {
@@ -162,7 +162,7 @@
             padding: 25px;
             color: #fff;
             text-align: center;
-            background: linear-gradient(135deg, #123c8c, #176de0);
+            background: linear-gradient(135deg, #087443, #0ca968);
         }
 
         .no-image strong {
@@ -185,8 +185,8 @@
             margin-bottom: 15px;
             padding: 7px 15px;
             border-radius: 25px;
-            background: #e8f1ff;
-            color: #1265e8;
+            background: #e5f5eb;
+            color: #087443;
             font-size: 12px;
             font-weight: bold;
             letter-spacing: .4px;
@@ -203,7 +203,7 @@
 
         .detail-title {
             margin-bottom: 18px;
-            color: #123c8c;
+            color: #075c36;
             font-size: 34px;
             line-height: 1.4;
             overflow-wrap: anywhere;
@@ -227,7 +227,7 @@
 
         .info-title {
             margin-bottom: 20px;
-            color: #123c8c;
+            color: #075c36;
             font-size: 22px;
         }
 
@@ -241,15 +241,15 @@
         .info-box {
             min-width: 0;
             padding: 19px;
-            border: 1px solid #e2e8f0;
+            border: 1px solid #e0ebe3;
             border-radius: 11px;
-            background: #f8fafc;
+            background: #f7faf8;
             transition: .25s;
         }
 
         .info-box:hover {
-            border-color: #bfdbfe;
-            background: #eff6ff;
+            border-color: #a7d9ba;
+            background: #edf8f0;
             transform: translateY(-2px);
         }
 
@@ -290,22 +290,23 @@
         }
 
         .btn-back {
-            background: #1265e8;
+            background: #087443;
             color: #fff;
         }
 
         .btn-back:hover {
-            background: #0d4fb8;
+            background: #075c36;
+            color: #fff;
             transform: translateY(-2px);
         }
 
         .btn-home {
-            background: #e8f1ff;
-            color: #123c8c;
+            background: #e5f5eb;
+            color: #087443;
         }
 
         .btn-home:hover {
-            background: #d5e5ff;
+            background: #cdebd7;
         }
 
         /* ================= FOOTER ================= */
@@ -313,7 +314,7 @@
         .footer {
             margin-top: 30px;
             padding: 45px 7% 20px;
-            background: #123c8c;
+            background: #075c36;
             color: #fff;
         }
 
@@ -347,7 +348,7 @@
 
         .footer-description {
             max-width: 400px;
-            color: #dce7f7;
+            color: #dcefe3;
             font-size: 13px;
             line-height: 1.9;
         }
@@ -366,7 +367,7 @@
             width: 38px;
             height: 3px;
             border-radius: 5px;
-            background: #60a5fa;
+            background: #62d995;
             content: "";
         }
 
@@ -379,7 +380,7 @@
         }
 
         .footer-links a {
-            color: #dce7f7;
+            color: #dcefe3;
             font-size: 13px;
             transition: .25s;
         }
@@ -390,7 +391,7 @@
         }
 
         .footer-contact {
-            color: #dce7f7;
+            color: #dcefe3;
             font-size: 13px;
             line-height: 1.9;
             overflow-wrap: anywhere;
@@ -405,7 +406,7 @@
             margin: 30px auto 0;
             padding-top: 18px;
             border-top: 1px solid rgba(255, 255, 255, .2);
-            color: #dce7f7;
+            color: #dcefe3;
             text-align: center;
             font-size: 12px;
         }
@@ -544,19 +545,23 @@
 
             <a href="{{ url('/') }}" class="brand">
                 <img
-                    src="{{ asset('img/LOGO SMK 1 NEGRI JAKARTA.jpg') }}"
-                    alt="Logo SMK Negeri 1 Jakarta"
+                    src="{{ asset('img/logo_alma.jpg') }}"
+                    alt="Logo MTs Al Muawanah"
                     class="brand-logo"
+                    onerror="this.style.display='none'"
                 >
 
                 <div class="brand-text">
-                    <span class="brand-name">SMK NEGERI 1 JAKARTA</span>
+                    <span class="brand-name">MTs AL MUAWANAH</span>
                     <span class="brand-subtitle">
-                        CERDAS · TERAMPIL · BERKARAKTER
+                        RELIGIUS · CERDAS · BERPRESTASI
                     </span>
                 </div>
             </a>
 
+            <a href="{{ url('/') }}" class="home-link">
+                ← Beranda
+            </a>
 
         </div>
     </nav>
@@ -577,7 +582,7 @@
 
             {{-- FOTO BERITA --}}
 
-            @if(!empty($berita->gambar))
+            @if (!empty($berita->gambar))
 
                 <img
                     src="{{ asset('storage/' . $berita->gambar) }}"
@@ -587,14 +592,18 @@
                 >
 
                 <div class="no-image" style="display:none;">
-                    <strong>{{ strtoupper(substr($berita->judul ?? 'B', 0, 1)) }}</strong>
+                    <strong>
+                        {{ strtoupper(mb_substr($berita->judul ?? 'B', 0, 1)) }}
+                    </strong>
                     <span>Foto berita tidak dapat dimuat</span>
                 </div>
 
             @else
 
                 <div class="no-image">
-                    <strong>{{ strtoupper(substr($berita->judul ?? 'B', 0, 1)) }}</strong>
+                    <strong>
+                        {{ strtoupper(mb_substr($berita->judul ?? 'B', 0, 1)) }}
+                    </strong>
                     <span>Foto berita belum tersedia</span>
                 </div>
 
@@ -606,7 +615,7 @@
 
                 <span class="label">BERITA SEKOLAH</span>
 
-                @if(!empty($berita->tanggal))
+                @if (!empty($berita->tanggal))
                     <div class="tanggal">
                         <span>📅</span>
                         <span>
@@ -620,7 +629,7 @@
                 </h1>
 
                 <div class="detail-description">
-                    @if(!empty($berita->deskripsi))
+                    @if (!empty($berita->deskripsi))
                         {!! nl2br(e($berita->deskripsi)) !!}
                     @else
                         <p class="empty-description">
@@ -643,7 +652,7 @@
                     <div class="info-box">
                         <span>Tanggal Publikasi</span>
                         <strong>
-                            @if(!empty($berita->tanggal))
+                            @if (!empty($berita->tanggal))
                                 {{ \Illuminate\Support\Carbon::parse($berita->tanggal)->format('d F Y') }}
                             @else
                                 Belum ditentukan
@@ -653,7 +662,7 @@
 
                     <div class="info-box">
                         <span>Nama Sekolah</span>
-                        <strong>SMK NEGERI 1 JAKARTA</strong>
+                        <strong>MTs AL MUAWANAH</strong>
                     </div>
 
                     <div class="info-box">
@@ -678,6 +687,7 @@
                 </div>
 
             </div>
+
         </article>
 
     </main>
@@ -694,21 +704,22 @@
                 <div class="footer-brand">
 
                     <img
-                        src="{{ asset('img/LOGO SMK 1 NEGRI JAKARTA.jpg') }}"
-                        alt="Logo SMK Negeri 1 Jakarta"
+                        src="{{ asset('img/logo_alma.jpg') }}"
+                        alt="Logo MTs Al Muawanah"
                         class="footer-logo"
+                        onerror="this.style.display='none'"
                     >
 
                     <div class="footer-school">
-                        SMK NEGERI 1 JAKARTA
+                        MTs AL MUAWANAH
                     </div>
 
                 </div>
 
                 <p class="footer-description">
-                    Sekolah yang berkomitmen dalam memberikan pendidikan
-                    berkualitas untuk membentuk generasi yang cerdas,
-                    terampil, dan berkarakter.
+                    MTs Al Muawanah berkomitmen memberikan pendidikan
+                    yang berkualitas untuk membentuk generasi yang
+                    religius, cerdas, berakhlak mulia, dan berprestasi.
                 </p>
             </div>
 
@@ -721,11 +732,11 @@
                     <li><a href="{{ url('/') }}">Beranda</a></li>
                     <li><a href="{{ url('/#profil') }}">Profil Sekolah</a></li>
                     <li><a href="{{ url('/#guru') }}">Guru</a></li>
-                    <li><a href="{{ url('/#program') }}">Program Keahlian</a></li>
-                    <li><a href="{{ url('/#ekskul') }}">Ekstrakurikuler</a></li>
+                    <li><a href="{{ url('/#program') }}">Program</a></li>
+                    <li><a href="{{ url('/#ekstrakulikuler') }}">Ekstrakulikuler</a></li>
                     <li><a href="{{ url('/#berita') }}">Berita</a></li>
-                    <li><a href="{{ url('/#galeri') }}">Galeri</a></li>
                     <li><a href="{{ url('/#prestasi') }}">Prestasi</a></li>
+                    <li><a href="{{ url('/#galeri') }}">Galeri</a></li>
                 </ul>
             </div>
 
@@ -735,17 +746,19 @@
                 <h3 class="footer-title">Kontak Sekolah</h3>
 
                 <div class="footer-contact">
-                    <p>📍 Jl. Budi Utomo No. 7, Jakarta Pusat</p>
-                    <p>☎ (021) 381 3630 / (021) 350 4091</p>
-                    <p>✉ smkn1jakarta@gmail.com</p>
+                    <p>📍 Jl. Ciheras, Tanjungjaya</p>
+                    <p>☎ Hubungi pihak sekolah</p>
+                    <p>✉ matsalma@gmail.com</p>
                 </div>
             </div>
 
         </div>
 
+        {{-- COPYRIGHT --}}
+
         <div class="footer-bottom">
             © {{ date('Y') }}
-            <strong>SMK NEGERI 1 JAKARTA</strong>.
+            <strong>MTs AL MUAWANAH</strong>.
             Semua Hak Dilindungi.
         </div>
 

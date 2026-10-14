@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>{{ $prestasi->judul }} - MTS AL MUAWANAH</title>
+    <title>{{ $prestasi->judul }} - MTs Al Muawanah</title>
 
     <style>
         * {
@@ -17,7 +17,7 @@
         html {
             min-height: 100%;
             scroll-behavior: smooth;
-            background: #072507;
+            background: #075c36;
         }
 
         body {
@@ -25,7 +25,7 @@
             display: flex;
             flex-direction: column;
             font-family: Arial, Helvetica, sans-serif;
-            background: #f5f7fb;
+            background: #f5f9f6;
             color: #183818;
             line-height: 1.6;
         }
@@ -44,6 +44,7 @@
             padding: 10px 8%;
             background: #fff;
             box-shadow: 0 2px 10px rgba(0, 0, 0, .08);
+            border-bottom: 3px solid #198754;
             flex-shrink: 0;
         }
 
@@ -73,38 +74,38 @@
         }
 
         .brand-name {
-            color: #123c8c;
+            color: #087443;
             font-size: 18px;
             font-weight: bold;
             line-height: 1.3;
         }
 
         .brand-subtitle {
-            color: #777;
+            color: #64748b;
             font-size: 10px;
             letter-spacing: 1px;
             margin-top: 3px;
         }
 
-
+        /* ================= KONTEN ================= */
 
         .container {
             width: 100%;
             max-width: 1100px;
-            margin: 35px auto 35px;
+            margin: 35px auto;
             padding: 0 20px;
             flex: 1 0 auto;
         }
-
 
         .detail-card {
             background: #fff;
             border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 8px 30px rgba(0, 0, 0, .08);
-            border: 1px solid #e8edf5;
+            border: 1px solid #dcebe1;
         }
 
+        /* ================= FOTO PRESTASI ================= */
 
         .detail-image {
             width: 100%;
@@ -117,7 +118,7 @@
         .no-image {
             width: 100%;
             height: 300px;
-            background: linear-gradient(135deg, #123c8c, #1265e8);
+            background: linear-gradient(135deg, #075c36, #0ca968);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -126,7 +127,7 @@
             font-weight: bold;
         }
 
-
+        /* ================= ISI DETAIL ================= */
 
         .detail-content {
             padding: 35px 40px;
@@ -134,8 +135,8 @@
 
         .label {
             display: inline-block;
-            background: #e8f1ff;
-            color: #1265e8;
+            background: #e4f5e9;
+            color: #087443;
             padding: 7px 15px;
             border-radius: 20px;
             font-size: 12px;
@@ -145,7 +146,7 @@
 
         .detail-title {
             font-size: 32px;
-            color: #123c8c;
+            color: #087443;
             line-height: 1.4;
             margin-bottom: 18px;
             overflow-wrap: anywhere;
@@ -164,10 +165,11 @@
             font-style: italic;
         }
 
+        /* ================= INFORMASI PRESTASI ================= */
 
         .info-title {
             font-size: 22px;
-            color: #123c8c;
+            color: #087443;
             margin-bottom: 18px;
         }
 
@@ -180,16 +182,16 @@
 
         .info-box {
             min-width: 0;
-            background: #f7f9fc;
+            background: #f5faf6;
             border-radius: 10px;
             padding: 17px;
-            border: 1px solid #e8edf5;
+            border: 1px solid #dcebe1;
             transition: .25s;
         }
 
         .info-box:hover {
-            background: #eff6ff;
-            border-color: #bfdbfe;
+            background: #e4f5e9;
+            border-color: #86c99e;
             transform: translateY(-2px);
         }
 
@@ -207,7 +209,7 @@
             overflow-wrap: anywhere;
         }
 
-
+        /* ================= TOMBOL ================= */
 
         .button-area {
             display: flex;
@@ -228,30 +230,32 @@
         }
 
         .btn-back {
-            background: #1265e8;
+            background: #087443;
             color: white;
         }
 
         .btn-back:hover {
-            background: #0d4fb8;
+            background: #065c35;
+            color: white;
             transform: translateY(-2px);
         }
 
         .btn-home {
-            background: #e8f1ff;
-            color: #123c8c;
+            background: #e4f5e9;
+            color: #087443;
         }
 
         .btn-home:hover {
-            background: #d5e5ff;
+            background: #ccebd6;
+            color: #065c35;
         }
 
-
+        /* ================= FOOTER ================= */
 
         .footer {
             width: 100%;
             flex-shrink: 0;
-            background: #123c8c;
+            background: #075c36;
             color: white;
             margin-top: auto;
             padding: 40px 8% 20px;
@@ -286,7 +290,7 @@
         }
 
         .footer-description {
-            color: #dce7f7;
+            color: #d9f0e1;
             line-height: 1.8;
             font-size: 13px;
             max-width: 400px;
@@ -307,7 +311,7 @@
             width: 35px;
             height: 3px;
             border-radius: 5px;
-            background: #60a5fa;
+            background: #55d98a;
         }
 
         .footer-links {
@@ -321,7 +325,7 @@
         }
 
         .footer-links a {
-            color: #dce7f7;
+            color: #d9f0e1;
             font-size: 13px;
             transition: .25s;
         }
@@ -332,7 +336,7 @@
         }
 
         .footer-contact {
-            color: #dce7f7;
+            color: #d9f0e1;
             font-size: 13px;
             line-height: 1.9;
             overflow-wrap: anywhere;
@@ -349,11 +353,11 @@
             padding-top: 18px;
             border-top: 1px solid rgba(255, 255, 255, .2);
             text-align: center;
-            color: #dce7f7;
+            color: #d9f0e1;
             font-size: 12px;
         }
 
-
+        /* ================= RESPONSIVE ================= */
 
         @media (max-width: 768px) {
             .navbar {
@@ -478,17 +482,18 @@
             <a href="{{ url('/') }}" class="brand">
                 <img
                     src="{{ asset('img/logo_alma.jpg') }}"
-                    alt="Logo SMK Negeri 1 Jakarta"
+                    alt="Logo MTs Al Muawanah"
                     class="brand-logo"
+                    onerror="this.style.display='none'"
                 >
 
                 <div class="brand-text">
                     <span class="brand-name">
-                        MTS AL MUAWANAH
+                        MTs AL MUAWANAH
                     </span>
 
                     <span class="brand-subtitle">
-                        CERDAS · TERAMPIL · BERKARAKTER
+                        RELIGIUS · CERDAS · BERPRESTASI
                     </span>
                 </div>
             </a>
@@ -509,13 +514,13 @@
                 @if(\Illuminate\Support\Str::startsWith($prestasi->foto, 'prestasi/'))
                     <img
                         src="{{ asset('storage/' . $prestasi->foto) }}"
-                        alt="{{ $prestasi->judul }}"
+                        alt="Foto {{ $prestasi->judul }}"
                         class="detail-image"
                     >
                 @else
                     <img
                         src="{{ asset('uploads/prestasi/' . $prestasi->foto) }}"
-                        alt="{{ $prestasi->judul }}"
+                        alt="Foto {{ $prestasi->judul }}"
                         class="detail-image"
                     >
                 @endif
@@ -566,7 +571,7 @@
 
                     <div class="info-box">
                         <span>Sekolah</span>
-                        <strong>MTS AL MUAWANAH</strong>
+                        <strong>MTs Al Muawanah</strong>
                     </div>
 
                     <div class="info-box">
@@ -601,19 +606,20 @@
                 <div class="footer-brand">
                     <img
                         src="{{ asset('img/logo_alma.jpg') }}"
-                        alt="Logo SMK Negeri 1 Jakarta"
+                        alt="Logo MTs Al Muawanah"
                         class="footer-logo"
+                        onerror="this.style.display='none'"
                     >
 
                     <div class="footer-school">
-                        MTS AL MUAWANAH
+                        MTs AL MUAWANAH
                     </div>
                 </div>
 
                 <p class="footer-description">
-                    Sekolah yang berkomitmen dalam memberikan pendidikan
-                    berkualitas untuk membentuk generasi yang cerdas,
-                    terampil, dan berkarakter.
+                    MTs Al Muawanah berkomitmen memberikan pendidikan
+                    berkualitas untuk membentuk generasi yang religius,
+                    cerdas, berakhlak mulia, dan berprestasi.
                 </p>
             </div>
 
@@ -624,8 +630,8 @@
                     <li><a href="{{ url('/') }}">Beranda</a></li>
                     <li><a href="{{ url('/#profil') }}">Profil Sekolah</a></li>
                     <li><a href="{{ url('/#guru') }}">Guru</a></li>
-                    <li><a href="{{ url('/#program') }}">Program Keahlian</a></li>
-                    <li><a href="{{ url('/#ekskul') }}">Ekstrakurikuler</a></li>
+                    <li><a href="{{ url('/#program') }}">Program Sekolah</a></li>
+                    <li><a href="{{ url('/#ekskul') }}">Ekstrakulikuler</a></li>
                     <li><a href="{{ url('/#berita') }}">Berita</a></li>
                     <li><a href="{{ url('/#prestasi') }}">Prestasi</a></li>
                     <li><a href="{{ url('/#galeri') }}">Galeri</a></li>
@@ -636,8 +642,8 @@
                 <h3 class="footer-title">Kontak Sekolah</h3>
 
                 <div class="footer-contact">
-                    <p>📍 Jl. Ciheras . 7, Tanjungjayaa</p>
-                    <p>☎ (021) 381 3630</p>
+                    <p>📍 Jl. Ciheras, Tanjungjaya</p>
+                    <p>☎ Hubungi pihak sekolah</p>
                     <p>✉ matsalma@gmail.com</p>
                 </div>
             </div>
@@ -646,7 +652,7 @@
 
         <div class="footer-bottom">
             © {{ date('Y') }}
-            <strong>MTS AL MUAWANAH</strong>.
+            <strong>MTs AL MUAWANAH</strong>.
             Semua Hak Dilindungi.
         </div>
 

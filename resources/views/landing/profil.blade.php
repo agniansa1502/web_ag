@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 
@@ -6,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Detail Profil - {{ $profil?->nama_sekolah ?? 'MTS AL MUAWANAH' }}</title>
+    <title>Detail Profil - {{ $profil?->nama_sekolah ?? 'MTs Al Muawanah' }}</title>
 
     <style>
         * {
@@ -15,9 +14,13 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
-            background: #f3f6fb;
+            background: #f4f8f5;
             color: #263247;
             line-height: 1.7;
         }
@@ -26,9 +29,9 @@
             text-decoration: none;
         }
 
-        
+        /* NAVBAR */
         .navbar {
-            background: #123b70;
+            background: #075c36;
             color: white;
             padding: 15px 7%;
             display: flex;
@@ -66,7 +69,7 @@
             display: block;
             font-size: 12px;
             font-weight: normal;
-            color: #dce9ff;
+            color: #dcefe3;
         }
 
         .nav-link {
@@ -81,7 +84,7 @@
 
         .nav-link:hover {
             background: white;
-            color: #123b70;
+            color: #075c36;
         }
 
         /* FOTO BESAR DI ATAS */
@@ -90,7 +93,7 @@
             width: 100%;
             height: 430px;
             overflow: hidden;
-            background: #123b70;
+            background: #087443;
         }
 
         .school-hero img {
@@ -107,8 +110,8 @@
             inset: 0;
             background: linear-gradient(
                 to bottom,
-                rgba(10, 30, 55, .05) 15%,
-                rgba(10, 30, 55, .8) 100%
+                rgba(4, 45, 25, .05) 15%,
+                rgba(4, 45, 25, .82) 100%
             );
         }
 
@@ -136,10 +139,11 @@
             font-size: clamp(28px, 4vw, 43px);
             line-height: 1.25;
             margin-bottom: 8px;
+            overflow-wrap: anywhere;
         }
 
         .hero-caption p {
-            color: #e5efff;
+            color: #e5f5eb;
             font-size: 16px;
         }
 
@@ -155,16 +159,16 @@
             border-radius: 16px;
             padding: 30px;
             margin-bottom: 25px;
-            box-shadow: 0 8px 28px rgba(25, 55, 90, .07);
-            border: 1px solid #e8edf5;
+            box-shadow: 0 8px 28px rgba(8, 80, 45, .07);
+            border: 1px solid #e1eee5;
         }
 
         .section-title {
-            color: #123b70;
+            color: #075c36;
             font-size: 23px;
             margin-bottom: 22px;
             padding-bottom: 12px;
-            border-bottom: 2px solid #eaf0f8;
+            border-bottom: 2px solid #e5f0e8;
             position: relative;
         }
 
@@ -175,7 +179,7 @@
             bottom: -2px;
             width: 65px;
             height: 3px;
-            background: #2474c9;
+            background: #0ca968;
         }
 
         /* INFORMASI SEKOLAH */
@@ -186,8 +190,8 @@
         }
 
         .info-box {
-            background: #f7f9fd;
-            border: 1px solid #e7edf6;
+            background: #f6faf7;
+            border: 1px solid #e3eee6;
             border-radius: 11px;
             padding: 17px 19px;
             min-width: 0;
@@ -195,20 +199,20 @@
         }
 
         .info-box:hover {
-            border-color: #b8d5fa;
-            background: #f0f6ff;
+            border-color: #9ed8b5;
+            background: #eff8f2;
         }
 
         .info-box span {
             display: block;
-            color: #718096;
+            color: #718477;
             font-size: 13px;
             margin-bottom: 5px;
         }
 
         .info-box strong {
             display: block;
-            color: #263b59;
+            color: #244c35;
             font-size: 15px;
             overflow-wrap: anywhere;
         }
@@ -219,7 +223,7 @@
 
         /* SEJARAH DAN DESKRIPSI */
         .history-card {
-            border-left: 5px solid #2474c9;
+            border-left: 5px solid #0ca968;
         }
 
         .history-content,
@@ -242,13 +246,13 @@
         .mission-box {
             padding: 25px;
             border-radius: 13px;
-            background: #f7f9fd;
-            border: 1px solid #e5ecf6;
+            background: #f6faf7;
+            border: 1px solid #e1eee5;
         }
 
         .vision-box h3,
         .mission-box h3 {
-            color: #123b70;
+            color: #087443;
             margin-bottom: 12px;
             font-size: 19px;
         }
@@ -279,19 +283,19 @@
         }
 
         .btn-primary {
-            background: #1765b5;
+            background: #087443;
             color: white;
         }
 
         .btn-primary:hover {
-            background: #104b8b;
+            background: #075c36;
             transform: translateY(-2px);
         }
 
         /* FOOTER */
         footer {
-            background: #102e53;
-            color: #dce7f7;
+            background: #075c36;
+            color: #dcefe3;
             text-align: center;
             padding: 25px 20px;
             font-size: 13px;
@@ -379,40 +383,42 @@
     {{-- NAVBAR --}}
     <header class="navbar">
         <div class="brand">
+
             @if (!empty($profil?->logo))
                 <img
                     src="{{ asset('storage/' . $profil->logo) }}"
-                    alt="Logo Sekolah"
+                    alt="Logo MTs Al Muawanah"
+                    onerror="this.onerror=null; this.src='{{ asset('img/logo_alma.jpg') }}';"
                 >
             @else
                 <img
-                    src="{{ asset('img/school_logo.png') }}"
-                    alt="Logo Sekolah"
+                    src="{{ asset('img/logo_alma.jpg') }}"
+                    alt="Logo MTs Al Muawanah"
                     onerror="this.style.display='none'"
                 >
             @endif
 
             <h2>
-                {{ $profil?->nama_sekolah ?? 'SMK NEGERI 1 JAKARTA' }}
+                {{ $profil?->nama_sekolah ?? 'MTs Al Muawanah' }}
                 <span>Profil Resmi Sekolah</span>
             </h2>
+
         </div>
-
-
     </header>
 
-    {{-- FOTO SEKOLAH DAN JUDUL DI BAGIAN ATAS --}}
+    {{-- FOTO SEKOLAH DAN JUDUL --}}
     <section class="school-hero">
 
         @if (!empty($profil?->foto))
             <img
                 src="{{ asset('storage/' . $profil->foto) }}"
                 alt="Foto {{ $profil?->nama_sekolah ?? 'Sekolah' }}"
+                onerror="this.onerror=null; this.src='{{ asset('img/sekolah.jpg') }}';"
             >
         @else
             <img
                 src="{{ asset('img/sekolah.jpg') }}"
-                alt="Foto Sekolah"
+                alt="Foto MTs Al Muawanah"
                 onerror="this.style.display='none'"
             >
         @endif
@@ -420,7 +426,7 @@
         <div class="hero-caption">
             <span class="label">PROFIL SEKOLAH</span>
 
-            <h1>{{ $profil?->nama_sekolah ?? 'SMK NEGERI 1 JAKARTA' }}</h1>
+            <h1>{{ $profil?->nama_sekolah ?? 'MTs Al Muawanah' }}</h1>
 
             <p>
                 Mengenal lebih dekat identitas, sejarah, visi, dan misi sekolah.
@@ -439,7 +445,7 @@
 
                 <div class="info-box">
                     <span>Nama Sekolah</span>
-                    <strong>{{ $profil?->nama_sekolah ?: '-' }}</strong>
+                    <strong>{{ $profil?->nama_sekolah ?: 'MTs Al Muawanah' }}</strong>
                 </div>
 
                 <div class="info-box">
@@ -531,7 +537,7 @@
         {{-- TOMBOL KEMBALI --}}
         <div class="action-area">
             <a href="{{ url('/') }}" class="btn btn-primary">
-                 Kembali ke Beranda
+                Kembali ke Beranda
             </a>
         </div>
 
@@ -541,7 +547,7 @@
     <footer>
         <p>
             &copy; {{ date('Y') }}
-            {{ $profil?->nama_sekolah ?? 'SMK NEGERI 1 JAKARTA' }}
+            {{ $profil?->nama_sekolah ?? 'MTs Al Muawanah' }}
         </p>
 
         <p>
@@ -551,4 +557,3 @@
 
 </body>
 </html>
-
