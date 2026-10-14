@@ -21,15 +21,15 @@ class UjikomController extends Controller
         $nilai1 = (float) $request->nilai1;
         $nilai2 = (float) $request->nilai2;
 
-        $rataRata = ($nilai1 + $nilai2) / 2;
+        $total = $nilai1 + $nilai2;
+        $rataRata = $total / 2;
 
-        $keterangan = $rataRata > 70
-            ? 'LULUS'
-            : 'TIDAK LULUS';
+        $keterangan = $rataRata >= 75
+            ? 'Lulus'
+            : 'Belum Lulus';
 
         return view('input-nilai', compact(
-            'nilai1',
-            'nilai2',
+            'total',
             'rataRata',
             'keterangan'
         ));

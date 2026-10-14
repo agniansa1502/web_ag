@@ -1,0 +1,60 @@
+.kepala-sekolah-box {
+    background: #fff;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    border-top: 5px solid var(--hijau);
+}
+
+.foto-kepala-sekolah {
+    width: 100%;
+    max-width: 280px;
+    height: 330px;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 15px;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.12);
+}
+
+.label-kepala-sekolah {
+    display: inline-block;
+    background: #e3f5e9;
+    color: var(--hijau);
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 30px;
+    margin-bottom: 12px;
+}
+
+.sambutan-kepala-sekolah {
+    background: linear-gradient(135deg, #087443, #0ca968);
+    color: white;
+    border-radius: 20px;
+    padding: 30px;
+    height: 100%;
+}
+
+.sambutan-kepala-sekolah h3 {
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.sambutan-kepala-sekolah p {
+    line-height: 1.9;
+    text-align: justify;
+}
+
+@media (max-width: 767px) {
+    .foto-kepala-sekolah {
+        max-width: 220px;
+        height: 270px;
+    }
+
+    .kepala-sekolah-box {
+        padding: 20px;
+    }
+
+    .sambutan-kepala-sekolah {
+        padding: 22px;
+    }
+}

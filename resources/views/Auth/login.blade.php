@@ -10,23 +10,22 @@
 <body class="bg-slate-100 min-h-screen flex items-center justify-center p-4">
 
     <div class="w-full max-w-md bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden">
-        <!-- HEADER LOGIN -->
+      
         <div class="bg-emerald-950 text-white p-8 text-center space-y-3 relative">
             <a href="{{ route('home') }}" class="absolute top-4 left-4 text-emerald-200 hover:text-white text-xs flex items-center gap-1">
                 <i class="bi bi-arrow-left"></i> Beranda
             </a>
-            <img src="{{ asset('asets/image/logo_alma.png') }}" alt="Logo" class="w-16 h-16 object-contain bg-white rounded-full p-2 mx-auto shadow-md">
+            <img src="{{ asset('asets/image/logo_alma.jpg') }}" alt="Logo" class="w-16 h-16 object-contain bg-white rounded-full p-2 mx-auto shadow-md">
             <div>
                 <h1 class="text-xl font-bold tracking-wide">MTs Al Muawanah</h1>
                 <p class="text-xs text-amber-400">Portal Login Administrator</p>
             </div>
         </div>
 
-        <!-- FORM LOGIN -->
         <form action="{{ route('login.process') }}" method="POST" class="p-8 space-y-5">
             @csrf
 
-            {{-- ALERT ERROR --}}
+
             @if(session('error'))
                 <div class="bg-red-50 text-red-600 border border-red-200 text-xs p-3.5 rounded-xl flex items-center gap-2">
                     <i class="bi bi-exclamation-triangle-fill shrink-0"></i>
