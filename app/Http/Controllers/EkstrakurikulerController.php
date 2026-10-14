@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Ekstrakurikuler;
+use App\Models\Ekstrakulikuler;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -11,7 +11,7 @@ class EkstrakulikulerController extends Controller
 {
     public function index()
     {
-        $ekskul = Ekstrakurikuler::all();
+        $ekskul = Ekstrakulikuler::all();
         return view('admin.ekstrakulikuler.index', compact('ekskul'));
     }
 
@@ -36,14 +36,14 @@ class EkstrakulikulerController extends Controller
             $data['gambar'] = $request->file('gambar')->store('ekskul', 'public');
         }
 
-        Ekstrakurikuler::create($data);
+        Ekstrakulikuler::create($data);
 
         return redirect()->route('admin.ekstrakulikuler.index')->with('success', 'Data ekstrakurikuler berhasil ditambahkan');
     }
 
     public function destroy($id)
     {
-        $ekskul = Ekstrakurikuler::findOrFail($id);
+        $ekskul = Ekstrakulikuler::findOrFail($id);
 
         if ($ekskul->gambar && Storage::disk('public')->exists($ekskul->gambar)) {
             Storage::disk('public')->delete($ekskul->gambar);

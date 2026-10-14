@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>{{ $program->judul }} - SMK NEGERI 1 JAKARTA</title>
+    <title>{{ $program->judul }} - MTS AL MUAWANAH</title>
 
     <style>
         * {

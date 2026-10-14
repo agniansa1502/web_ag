@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Detail Profil - {{ $profil?->nama_sekolah ?? 'SMK NEGERI 1 JAKARTA' }}</title>
+    <title>Detail Profil - {{ $profil?->nama_sekolah ?? 'MTS AL MUAWANAH' }}</title>
 
     <style>
         * {
@@ -26,7 +26,7 @@
             text-decoration: none;
         }
 
-        /* NAVBAR */
+        
         .navbar {
             background: #123b70;
             color: white;
@@ -398,7 +398,7 @@
             </h2>
         </div>
 
-      
+
     </header>
 
     {{-- FOTO SEKOLAH DAN JUDUL DI BAGIAN ATAS --}}

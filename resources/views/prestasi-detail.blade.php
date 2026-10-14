@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>{{ $prestasi->judul }} - SMK NEGERI 1 JAKARTA</title>
+    <title>{{ $prestasi->judul }} - MTS AL MUAWANAH</title>
 
     <style>
         * {
@@ -17,7 +17,7 @@
         html {
             min-height: 100%;
             scroll-behavior: smooth;
-            background: #123c8c;
+            background: #072507;
         }
 
         body {
@@ -26,7 +26,7 @@
             flex-direction: column;
             font-family: Arial, Helvetica, sans-serif;
             background: #f5f7fb;
-            color: #1e293b;
+            color: #183818;
             line-height: 1.6;
         }
 
@@ -86,7 +86,7 @@
             margin-top: 3px;
         }
 
-        /* ================= CONTAINER ================= */
+
 
         .container {
             width: 100%;
@@ -96,7 +96,6 @@
             flex: 1 0 auto;
         }
 
-        /* ================= DETAIL CARD ================= */
 
         .detail-card {
             background: #fff;
@@ -106,7 +105,6 @@
             border: 1px solid #e8edf5;
         }
 
-        /* ================= FOTO PRESTASI ================= */
 
         .detail-image {
             width: 100%;
@@ -128,7 +126,7 @@
             font-weight: bold;
         }
 
-        /* ================= CONTENT ================= */
+
 
         .detail-content {
             padding: 35px 40px;
@@ -166,7 +164,6 @@
             font-style: italic;
         }
 
-        /* ================= INFORMASI PRESTASI ================= */
 
         .info-title {
             font-size: 22px;
@@ -210,7 +207,7 @@
             overflow-wrap: anywhere;
         }
 
-        /* ================= BUTTON ================= */
+
 
         .button-area {
             display: flex;
@@ -249,7 +246,7 @@
             background: #d5e5ff;
         }
 
-        /* ================= FOOTER ================= */
+
 
         .footer {
             width: 100%;
@@ -356,7 +353,7 @@
             font-size: 12px;
         }
 
-        /* ================= RESPONSIVE ================= */
+
 
         @media (max-width: 768px) {
             .navbar {
@@ -480,14 +477,14 @@
 
             <a href="{{ url('/') }}" class="brand">
                 <img
-                    src="{{ asset('img/LOGO SMK 1 NEGRI JAKARTA.jpg') }}"
+                    src="{{ asset('img/logo_alma.jpg') }}"
                     alt="Logo SMK Negeri 1 Jakarta"
                     class="brand-logo"
                 >
 
                 <div class="brand-text">
                     <span class="brand-name">
-                        SMK NEGERI 1 JAKARTA
+                        MTS AL MUAWANAH
                     </span>
 
                     <span class="brand-subtitle">
@@ -569,7 +566,7 @@
 
                     <div class="info-box">
                         <span>Sekolah</span>
-                        <strong>SMK NEGERI 1 JAKARTA</strong>
+                        <strong>MTS AL MUAWANAH</strong>
                     </div>
 
                     <div class="info-box">
@@ -603,13 +600,13 @@
             <div>
                 <div class="footer-brand">
                     <img
-                        src="{{ asset('img/LOGO SMK 1 NEGRI JAKARTA.jpg') }}"
+                        src="{{ asset('img/logo_alma.jpg') }}"
                         alt="Logo SMK Negeri 1 Jakarta"
                         class="footer-logo"
                     >
 
                     <div class="footer-school">
-                        SMK NEGERI 1 JAKARTA
+                        MTS AL MUAWANAH
                     </div>
                 </div>
 
@@ -639,9 +636,9 @@
                 <h3 class="footer-title">Kontak Sekolah</h3>
 
                 <div class="footer-contact">
-                    <p>📍 Jl. Budi Utomo No. 7, Jakarta Pusat</p>
+                    <p>📍 Jl. Ciheras . 7, Tanjungjayaa</p>
                     <p>☎ (021) 381 3630</p>
-                    <p>✉ smkn1jakarta@gmail.com</p>
+                    <p>✉ matsalma@gmail.com</p>
                 </div>
             </div>
 
@@ -649,7 +646,7 @@
 
         <div class="footer-bottom">
             © {{ date('Y') }}
-            <strong>SMK NEGERI 1 JAKARTA</strong>.
+            <strong>MTS AL MUAWANAH</strong>.
             Semua Hak Dilindungi.
         </div>
 

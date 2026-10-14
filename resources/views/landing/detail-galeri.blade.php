@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>{{ $galeri->judul ?? 'Detail Galeri' }} - SMK NEGERI 1 JAKARTA</title>
+    <title>{{ $galeri->judul ?? 'Detail Galeri' }} - MTS AL MUAWANAH</title>
 
     <style>
         * {
@@ -471,21 +471,21 @@
                 @if(isset($profil) && !empty($profil->logo))
                     <img
                         src="{{ asset('storage/' . $profil->logo) }}"
-                        alt="Logo SMK Negeri 1 Jakarta"
+                        alt="Logo MTS AL MUAWANAH"
                         class="brand-logo"
                         onerror="this.onerror=null; this.src='{{ asset('img/LOGO SMK 1 NEGRI JAKARTA.jpg') }}';"
                     >
                 @else
                     <img
-                        src="{{ asset('img/LOGO SMK 1 NEGRI JAKARTA.jpg') }}"
-                        alt="Logo SMK Negeri 1 Jakarta"
+                        src="{{ asset('img/logo_alma.jpg') }}"
+                        alt="Logo MTS AL MUAWANAH"
                         class="brand-logo"
                     >
                 @endif
 
                 <div class="brand-text">
                     <span class="brand-name">
-                        SMK NEGERI 1 JAKARTA
+                        MTS AL MUAWANAh
                     </span>
 
                     <span class="brand-subtitle">
@@ -495,7 +495,7 @@
 
             </a>
 
-          
+
 
         </div>
     </nav>
@@ -559,7 +559,7 @@
 
                     <div class="info-box">
                         <span>Nama Sekolah</span>
-                        <strong>SMK NEGERI 1 JAKARTA</strong>
+                        <strong>MTS AL MUAWANAH</strong>
                     </div>
 
                     <div class="info-box">
@@ -594,7 +594,7 @@
 
     </main>
 
-    {{-- ================= FOOTER ================= --}}
+
     <footer class="footer">
 
         <div class="footer-container">
@@ -605,13 +605,13 @@
                 <div class="footer-brand">
 
                     <img
-                        src="{{ asset('img/LOGO SMK 1 NEGRI JAKARTA.jpg') }}"
-                        alt="Logo SMK Negeri 1 Jakarta"
+                        src="{{ asset('img/logo_alma.jpg') }}"
+                        alt="Logo MTS AL MUAWANAH"
                         class="footer-logo"
                     >
 
                     <div class="footer-school">
-                        SMK NEGERI 1 JAKARTA
+                        MTS AL MUAWANAH
                     </div>
 
                 </div>
@@ -647,9 +647,9 @@
                 <h3 class="footer-title">Kontak Sekolah</h3>
 
                 <div class="footer-contact">
-                    <div>📍 Jl. Budi Utomo No. 7, Jakarta Pusat</div>
+                    <div>📍 Jl. Ciheras, Tanjungjaya</div>
                     <div>☎ (021) 381 3630 / (021) 350 4091</div>
-                    <div>✉ smkn1jakarta@gmail.com</div>
+                    <div>✉ matsalma@gmail.com</div>
                 </div>
 
             </div>
@@ -658,7 +658,7 @@
 
         <div class="footer-bottom">
             © {{ date('Y') }}
-            <strong>SMK NEGERI 1 JAKARTA</strong>.
+            <strong>MTS AL MUAWANAH</strong>.
             Semua Hak Dilindungi.
         </div>
 

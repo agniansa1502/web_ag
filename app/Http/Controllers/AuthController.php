@@ -3,67 +3,37 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-    // Menampilkan halaman login
-    public function loginForm()
+    public function showLogin()
     {
-        return view('auth.login');
+        return view('Admin.login');
     }
 
-    // Proses login
-  public function login(Request $request)
-{
-    $request->validate([
-        'login' => ['required'],
-        'password' => ['required'],
-    ]);
+    public function processLogin(Request $request)
+    {
+        // Ubah validasi dari 'email' menjadi 'username'
+        $credentials = $request->validate([
+            'username' => ['required'],
+            'password' => ['required'],
+        ]);
 
-    $login = $request->login;
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->intended(route('admin.dashboard'));
+        }
 
-    // Login menggunakan email
-    if (filter_var($login, FILTER_VALIDATE_EMAIL)) {
-
-        $credentials = [
-            'email' => $login,
-            'password' => $request->password,
-        ];
-
-    } else {
-
-        // Login menggunakan nama
-        $credentials = [
-            'name' => $login,
-            'password' => $request->password,
-        ];
+        return back()->with('error', 'Username atau password salah!')->withInput();
     }
 
-    if (Auth::attempt($credentials)) {
-
-        $request->session()->regenerate();
-
-        return redirect()->route('admin.dashboard');
-    }
-
-    return back()
-        ->withErrors([
-            'login' => 'Username/email atau password salah.',
-        ])
-        ->withInput();
-}
-    // Logout
     public function logout(Request $request)
     {
         Auth::logout();
-
-        // Hapus session login
         $request->session()->invalidate();
-
-        // Buat token CSRF baru
         $request->session()->regenerateToken();
-
         return redirect()->route('login');
     }
 }

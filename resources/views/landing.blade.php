@@ -259,9 +259,7 @@
             }
         }
 
-        /* =========================
-           STATISTIK
-        ========================= */
+
 
         .stats {
             position: relative;
@@ -306,9 +304,7 @@
             font-size: 12px;
         }
 
-        /* =========================
-           SECTION UMUM
-        ========================= */
+        /
 
         .section {
             padding: 75px 0;
@@ -346,9 +342,7 @@
             font-size: 14px;
         }
 
-        /* =========================
-           KEPALA SEKOLAH
-        ========================= */
+
 
         .principal {
             background: #062b63;
@@ -400,9 +394,7 @@
         }
 
 
-/* =========================
-   PROFIL SEKOLAH
-========================= */
+
 
 #profil.section {
     width: 100%;
@@ -523,7 +515,6 @@
     }
 }
 
-/* RESPONSIVE HP */
 
 @media (max-width: 700px) {
     #profil.section {
@@ -561,9 +552,7 @@
     }
 }
 
-        /* =========================
-           KARTU UMUM
-        ========================= */
+
 
         .guru-grid,
         .program-grid,
@@ -670,9 +659,7 @@
             border-radius: 12px;
         }
 
-        /* =========================
-           PROGRAM KEAHLIAN
-        ========================= */
+
 
         .program-image {
             height: 190px;
@@ -725,9 +712,7 @@
             color: #062b63;
         }
 
-        /* =========================
-           EKSTRAKURIKULER
-        ========================= */
+
 
         .ekskul-grid {
             display: grid;
@@ -795,9 +780,6 @@
             color: #ffc107;
         }
 
-        /* =========================
-           BERITA
-        ========================= */
 
         .news-image {
             width: 100%;
@@ -908,9 +890,7 @@
             color: #475569;
         }
 
-        /* =========================
-           GALERI
-        ========================= */
+
 
         .gallery-grid {
             display: grid;
@@ -959,9 +939,7 @@
             margin-top: 5px;
         }
 
-        /* =========================
-           CTA
-        ========================= */
+
 
         .cta {
             padding: 70px 0;
@@ -990,9 +968,7 @@
             font-size: 14px;
         }
 
-        /* =========================
-           FOOTER
-        ========================= */
+
 
         footer {
             background: #031a3b;
@@ -1074,9 +1050,7 @@
             gap: 12px;
         }
 
-        /* =========================
-           RESPONSIVE TABLET
-        ========================= */
+
 
         @media (max-width: 1050px) {
             .nav-content {
@@ -1356,13 +1330,13 @@
             <a href="{{ route('landing') }}" class="brand">
 
                 <img
-                    src="{{ asset('img/LOGO SMK 1 NEGRI JAKARTA.jpg') }}"
+                    src="{{ asset('img/logo_alma.jpg') }}"
                     alt="Logo Sekolah"
                 >
 
                 <div>
                     <div class="brand-name">
-                        {{ $profil->nama_sekolah ?? 'SMK NEGERI 1 JAKARTA' }}
+                        {{ $profil->nama_sekolah ?? 'MTS AL MUAWANAH' }}
                     </div>
 
                     <div class="brand-tagline">
@@ -1422,7 +1396,7 @@
                     melalui pendidikan berkualitas.
                 </p>
 
-               
+
             </div>
         </div>
 
@@ -1492,7 +1466,7 @@
 
                     <h2>
                         Selamat Datang di
-                        {{ $profil->nama_sekolah ?? 'SMK NEGERI 1 JAKARTA' }}
+                        {{ $profil->nama_sekolah ?? 'MTS AL MUAWANAH' }}
                     </h2>
 
                     <p>
@@ -1663,7 +1637,7 @@
                             class="guru-link"
                         >
                             Lihat Detail
-                            
+
                         </a>
 
                     </div>
@@ -1729,8 +1703,8 @@
                                 href="{{ route('program.detail', $program->encrypted_id) }}"
                                 class="program-link"
                             >
-                                Lihat Detail 
-                               
+                                Lihat Detail
+
                             </a>
 
                         </div>
@@ -1797,7 +1771,7 @@
                             class="ekskul-link"
                         >
                             Lihat Detail
-                           
+
                         </a>
 
                     </div>
@@ -1815,9 +1789,7 @@
         </div>
     </section>
 
-    {{-- =========================
-         BERITA
-    ========================= --}}
+
     <section class="section" id="berita">
 
         <div class="container">
@@ -1877,8 +1849,8 @@
                                 class="program-link"
                             >
                                 Lihat Detail
-                           
-                               
+
+
                             </a>
 
                         </div>
@@ -1896,9 +1868,7 @@
         </div>
     </section>
 
-    {{-- =========================
-         PRESTASI
-    ========================= --}}
+
     <section class="section prestasi-section" id="prestasi">
 
         <div class="container">
@@ -1968,8 +1938,8 @@
 
                             <span class="program-link">
                                 Lihat Detail
-                           
-                                
+
+
                             </span>
 
                         </div>
@@ -1990,9 +1960,7 @@
         </div>
     </section>
 
-    {{-- =========================
-         GALERI
-    ========================= --}}
+
     <section class="section" id="galeri">
 
         <div class="container">
@@ -2052,15 +2020,13 @@
         </div>
     </section>
 
-    {{-- =========================
-         CTA
-    ========================= --}}
+
     <section class="cta">
 
         <div class="container">
 
             <h2>
-                Bersama {{ $profil->nama_sekolah ?? 'SMK NEGERI 1 JAKARTA' }}
+                Bersama {{ $profil->nama_sekolah ?? 'MTS AL MUAWANAH' }}
                 Menuju Masa Depan
             </h2>
 
@@ -2087,13 +2053,13 @@
                     <div class="footer-logo">
 
                         <img
-                            src="{{ asset('img/LOGO SMK 1 NEGRI JAKARTA.jpg') }}"
+                            src="{{ asset('img/logo_alma.jpg') }}"
                             alt="Logo Sekolah"
                             loading="lazy"
                         >
 
                         <span>
-                            {{ $profil->nama_sekolah ?? 'SMK NEGERI 1 JAKARTA' }}
+                            {{ $profil->nama_sekolah ?? 'MTS AL MUAWANAH' }}
                         </span>
 
                     </div>
@@ -2188,7 +2154,7 @@
 
                 <span>
                     &copy; {{ date('Y') }}
-                    {{ $profil->nama_sekolah ?? 'SMK NEGERI 1 JAKARTA' }}.
+                    {{ $profil->nama_sekolah ?? 'MTS AL MUAWANAH' }}.
                     Semua Hak Dilindungi.
                 </span>
 
