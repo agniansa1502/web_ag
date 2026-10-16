@@ -1,86 +1,130 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Guru;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Contracts\Encryption\DecryptException;
+use Illuminate\Support\Facades\Crypt;
 
 class GuruController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $guru = Guru::all();
-        return view('admin.guru.index', compact('guru'));
+        $query = Guru::latest('id_guru');
+
+        if ($request->has('search') && $request->search != '') {
+            $search = $request->search;
+            $query->where('nama_guru', 'like', "%{$search}%")
+                  ->orWhere('nip', 'like', "%{$search}%")
+                  ->orWhere('mapel', 'like', "%{$search}%");
+        }
+
+        $gurus = $query->paginate(10);
+        return view('guru.index', compact('gurus'));
     }
 
     public function create()
     {
-        return view('admin.guru.create');
+        return view('guru.create');
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'nama_guru' => 'required|max:40',
-            'nip' => 'nullable|max:15',
-            'mapel' => 'required|max:40',
-            'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
+            'nip'       => 'required|max:15|unique:gurus,nip',
+            'mapel'     => 'required|max:40',
+            'foto'      => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        $data = $request->only(['nama_guru', 'nip', 'mapel']);
-
+        $fotoPath = null;
         if ($request->hasFile('foto')) {
-            $data['foto'] = $request->file('foto')->store('guru', 'public');
+            $foto = $request->file('foto');
+            $fotoName = time() . '_' . $foto->getClientOriginalName();
+            $foto->move(public_path('uploads/guru'), $fotoName);
+            $fotoPath = $fotoName;
         }
 
-        Guru::create($data);
+        Guru::create([
+            'nama_guru' => $request->nama_guru,
+            'nip'       => $request->nip,
+            'mapel'     => $request->mapel,
+            'foto'      => $fotoPath,
+        ]);
 
-        return redirect()->route('admin.guru.index')->with('success', 'Data guru berhasil ditambahkan');
+        return redirect()->route('guru.index')->with('success', 'Data guru berhasil ditambahkan!');
     }
 
     public function edit($id)
     {
-        $guru = guru::findOrFail($id);
-        return view('admin.guru.edit', compact('guru'));
+        // Pengaman dekripsi ID agar aman dari error
+        try {
+            $idDecrypted = Crypt::decrypt($id);
+        } catch (DecryptException $e) {
+            abort(404);
+        }
+
+        $guru = Guru::findOrFail($idDecrypted);
+        return view('guru.edit', compact('guru'));
     }
 
     public function update(Request $request, $id)
     {
-        $guru = Guru::findOrFail($id);
+        // Pengaman dekripsi ID agar aman dari error
+        try {
+            $idDecrypted = Crypt::decrypt($id);
+        } catch (DecryptException $e) {
+            abort(404);
+        }
+
+        $guru = Guru::findOrFail($idDecrypted);
 
         $request->validate([
             'nama_guru' => 'required|max:40',
-            'nip' => 'nullable|max:15',
-            'mapel' => 'required|max:40',
-            'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
+            'nip'       => 'required|max:15|unique:gurus,nip,' . $idDecrypted . ',id_guru',
+            'mapel'     => 'required|max:40',
+            'foto'      => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        $data = $request->only(['nama_guru', 'nip', 'mapel']);
+        $data = [
+            'nama_guru' => $request->nama_guru,
+            'nip'       => $request->nip,
+            'mapel'     => $request->mapel,
+        ];
 
         if ($request->hasFile('foto')) {
-            if ($guru->foto && Storage::disk('public')->exists($guru->foto)) {
-                Storage::disk('public')->delete($guru->foto);
+            if ($guru->foto && file_exists(public_path('uploads/guru/' . $guru->foto))) {
+                unlink(public_path('uploads/guru/' . $guru->foto));
             }
-            $data['foto'] = $request->file('foto')->store('guru', 'public');
+
+            $foto = $request->file('foto');
+            $fotoName = time() . '_' . $foto->getClientOriginalName();
+            $foto->move(public_path('uploads/guru'), $fotoName);
+            $data['foto'] = $fotoName;
         }
 
         $guru->update($data);
 
-        return redirect()->route('admin.guru.index')->with('success', 'Data guru berhasil diperbarui');
+        return redirect()->route('guru.index')->with('success', 'Data guru berhasil diperbarui!');
     }
 
     public function destroy($id)
     {
-        $guru = Guru::findOrFail($id);
+        try {
+            $idDecrypted = Crypt::decrypt($id);
+        } catch (DecryptException $e) {
+            abort(404);
+        }
 
-        if ($guru->foto && Storage::disk('public')->exists($guru->foto)) {
-            Storage::disk('public')->delete($guru->foto);
+        $guru = Guru::findOrFail($idDecrypted);
+
+        if ($guru->foto && file_exists(public_path('uploads/guru/' . $guru->foto))) {
+            unlink(public_path('uploads/guru/' . $guru->foto));
         }
 
         $guru->delete();
 
-        return redirect()->route('admin.guru.index')->with('success', 'Data guru berhasil dihapus');
+        return redirect()->route('guru.index')->with('success', 'Data guru berhasil dihapus!');
     }
 }

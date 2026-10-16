@@ -5,10 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Ekstrakulikuller extends Model
+class Ekstrakulikuler extends Model
 {
     use HasFactory;
 
-    protected $table = 'ekstrakulikullers';
-    protected $fillable = ['nama', 'pembina', 'jadwal', 'deskripsi', 'gambar'];
+    protected $table = 'ekstrakulikulers';
+    protected $primaryKey = 'id_eskul';
+
+    protected $fillable = [
+        'nama_eskul',
+        'pembina',
+        'jadwal_latihan',
+        'deskripsi',
+        'gambar',
+    ];
 }

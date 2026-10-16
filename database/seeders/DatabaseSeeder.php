@@ -2,25 +2,21 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use App\Models\User;
+use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        $this->call([
-            UserSeeder::class,
-            BeritaSeeder::class,
-            // EkstrakulikullerSeeder::class, // Komentari
-            // Galeriseeder::class,          // Komentari juga biar gak error kolom foto
-        ]);
         User::create([
+            'id_user'  => (string) Str::uuid(),
+            'nama'     => 'Administrator',
             'username' => 'admin',
-            'password' => Hash::make('123456'),
-            'role' => 'admin', // Sesuaikan jika ada kolom role di tabelmu
+            'password' => Hash::make('password123'),
+            'role'     => 'admin',
         ]);
     }
 }

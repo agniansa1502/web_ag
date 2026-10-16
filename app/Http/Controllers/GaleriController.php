@@ -4,204 +4,134 @@ namespace App\Http\Controllers;
 
 use App\Models\Galeri;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\File;
 
 class GaleriController extends Controller
 {
-    /**
-     * Menampilkan semua galeri + pencarian
-     */
     public function index(Request $request)
     {
-        $search = $request->search;
+        $search = $request->input('search');
 
-        $galeris = Galeri::when($search, function ($query) use ($search) {
-            $query->where('judul', 'like', '%' . $search . '%')
-                ->orWhere('deskripsi', 'like', '%' . $search . '%');
-        })
-        ->latest()
-        ->get();
+        $galeris = Galeri::when($search, function ($query, $search) {
+            return $query->where('judul', 'like', "%{$search}%")
+                         ->orWhere('kategori', 'like', "%{$search}%");
+        })->latest('tanggal')->paginate(8);
 
-        foreach ($galeris as $galeri) {
-            $galeri->encrypted_id = Crypt::encryptString($galeri->id);
-        }
-
-        return view(
-            'admin.galeri.galeri',
-            compact('galeris', 'search')
-        );
+        return view('galeri.index', compact('galeris'));
     }
 
-
-/**
- * Detail galeri untuk halaman landing
- */
-public function show($id)
-{
-    try {
-        $id = \Illuminate\Support\Facades\Crypt::decryptString($id);
-    } catch (\Exception $e) {
-        // Mendukung ID biasa dari landing maupun ID terenkripsi
-        if (!is_numeric($id)) {
-            abort(404);
-        }
-    }
-
-    $galeri = \App\Models\Galeri::findOrFail($id);
-    $profil = \App\Models\ProfilSekolah::first();
-
-    return view('landing.detail-galeri', compact('galeri', 'profil'));
-}
-
-
-
-    /**
-     * Form tambah galeri
-     */
     public function create()
     {
-        return view('admin.galeri.create_galeri');
+        return view('galeri.create');
     }
 
-
-    /**
-     * Simpan galeri
-     */
     public function store(Request $request)
     {
         $request->validate([
-            'judul' => 'required',
-            'deskripsi' => 'nullable',
-            'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'judul'       => 'required|max:50|unique:galeris,judul',
+            'keteranngan' => 'required',
+            'kategori'    => 'required|in:Foto,Video',
+            'tanggal'     => 'required|date',
+            'file'        => 'required|file|mimes:jpg,jpeg,png,mp4,mkv|max:20480',
         ]);
 
-        $data = [
-            'judul' => $request->judul,
-            'deskripsi' => $request->deskripsi,
-        ];
-
-        if ($request->hasFile('foto')) {
-            $data['foto'] = $request->file('foto')->store('galeri', 'public');
+        $fileName = null;
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('uploads/galeri'), $fileName);
         }
 
-        Galeri::create($data);
+        Galeri::create([
+            'judul'       => $request->judul,
+            'keteranngan' => $request->keteranngan,
+            'kategori'    => $request->kategori,
+            'tanggal'     => $request->tanggal,
+            'file'        => $fileName,
+        ]);
 
-        return redirect()
-            ->route('admin.galeri')
-            ->with('success', 'Data galeri berhasil ditambahkan.');
+        return redirect()->route('galeri.index')->with('success', 'Data galeri berhasil ditambahkan!');
     }
 
-
-    /**
-     * Form edit
-     */
     public function edit($id)
     {
         try {
-            $id = Crypt::decryptString($id);
+            $decryptedId = Crypt::decrypt($id);
+            $galeri = Galeri::findOrFail($decryptedId);
         } catch (\Exception $e) {
-            abort(404);
+            $galeri = Galeri::findOrFail($id);
         }
 
-        $galeri = Galeri::findOrFail($id);
-
-        $galeri->encrypted_id = Crypt::encryptString($galeri->id);
-
-        return view(
-            'admin.galeri.edit_galeri',
-            compact('galeri')
-        );
+        return view('galeri.edit', compact('galeri'));
     }
 
-
-/**
- * Update galeri
- */
-public function update(Request $request, $id)
-{
-    try {
-        $id = Crypt::decryptString($id);
-    } catch (\Exception $e) {
-        abort(404);
-    }
-
-    $galeri = Galeri::findOrFail($id);
-
-    $request->validate([
-        'judul' => 'required|string|max:255',
-        'deskripsi' => 'nullable|string',
-        'foto' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-    ], [
-        'judul.required' => 'Judul wajib diisi.',
-        'foto.image' => 'File harus berupa gambar.',
-        'foto.mimes' => 'Format foto harus JPG, JPEG, PNG, atau WEBP.',
-        'foto.max' => 'Ukuran foto maksimal 2 MB.',
-    ]);
-
-    // Data teks
-    $galeri->judul = $request->judul;
-    $galeri->deskripsi = $request->deskripsi;
-
-    // Jika upload foto baru
-    if ($request->hasFile('foto')) {
-
-        // Hapus foto lama
-        if (
-            $galeri->foto &&
-            Storage::disk('public')->exists($galeri->foto)
-        ) {
-            Storage::disk('public')->delete($galeri->foto);
+    public function update(Request $request, $id)
+    {
+        try {
+            $decryptedId = Crypt::decrypt($id);
+            $galeri = Galeri::findOrFail($decryptedId);
+        } catch (\Exception $e) {
+            $galeri = Galeri::findOrFail($id);
         }
 
-        // Upload foto baru
-        $namaFoto = $request
-            ->file('foto')
-            ->store('galeri', 'public');
+        $primaryKey = $galeri->getKeyName(); 
 
-        // Simpan foto baru
-        $galeri->foto = $namaFoto;
+        $request->validate([
+            'judul'       => 'required|max:50|unique:galeris,judul,' . $galeri->{$primaryKey} . ',' . $primaryKey,
+            'keteranngan' => 'required',
+            'kategori'    => 'required|in:Foto,Video',
+            'tanggal'     => 'required|date',
+            'file'        => 'nullable|file|mimes:jpg,jpeg,png,mp4,mkv|max:20480',
+        ], [
+            'judul.required'       => 'Judul galeri wajib diisi.',
+            'judul.max'            => 'Judul galeri maksimal 50 karakter.',
+            'judul.unique'         => 'Judul galeri sudah ada, silakan gunakan judul lain.',
+            'keteranngan.required' => 'Keterangan galeri wajib diisi.',
+            'kategori.required'    => 'Kategori wajib dipilih.',
+            'kategori.in'          => 'Kategori tidak valid.',
+            'tanggal.required'     => 'Tanggal galeri wajib diisi.',
+            'file.mimes'           => 'Format file harus berupa jpg, jpeg, png, mp4, atau mkv.',
+            'file.max'             => 'Ukuran file maksimal 20MB.',
+        ]);
+
+        $fileName = $galeri->file;
+        if ($request->hasFile('file')) {
+            if ($fileName && File::exists(public_path('uploads/galeri/' . $fileName))) {
+                File::delete(public_path('uploads/galeri/' . $fileName));
+            }
+
+            $file = $request->file('file');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('uploads/galeri'), $fileName);
+        }
+
+        $galeri->update([
+            'judul'       => $request->judul,
+            'keterangan' => $request->keterangan,
+            'kategori'    => $request->kategori,
+            'tanggal'     => $request->tanggal,
+            'file'        => $fileName,
+        ]);
+
+        return redirect()->route('galeri.index')->with('success', 'Data galeri berhasil diperbarui!');
     }
 
-    $galeri->save();
-
-    return redirect()
-        ->route('admin.galeri')
-        ->with('success', 'Foto berhasil diperbarui.');
-}
-
-
-
-
-    /**
-     * Hapus galeri
-     */
     public function destroy($id)
     {
         try {
-            $id = Crypt::decryptString($id);
+            $decryptedId = Crypt::decrypt($id);
+            $galeri = Galeri::findOrFail($decryptedId);
         } catch (\Exception $e) {
-            abort(404);
+            $galeri = Galeri::findOrFail($id);
         }
 
-        $galeri = Galeri::findOrFail($id);
-
-        // Hapus file foto
-        if (
-            $galeri->foto &&
-            Storage::disk('public')->exists($galeri->foto)
-        ) {
-            Storage::disk('public')->delete($galeri->foto);
+        if ($galeri->file && File::exists(public_path('uploads/galeri/' . $galeri->file))) {
+            File::delete(public_path('uploads/galeri/' . $galeri->file));
         }
 
-
-        // Hapus data database
         $galeri->delete();
 
-
-        return redirect()
-            ->route('admin.galeri')
-            ->with('success', 'Foto berhasil dihapus.');
+        return redirect()->route('galeri.index')->with('success', 'Data galeri berhasil dihapus!');
     }
 }
-

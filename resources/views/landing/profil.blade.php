@@ -1,559 +1,309 @@
-<!DOCTYPE html>
-<html lang="id">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+@extends('landing.layouts.app')
 
-    <title>Detail Profil - {{ $profil?->nama_sekolah ?? 'MTs Al Muawanah' }}</title>
+@section('title', 'Profil Sekolah - MTs Al Muawanah')
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+@section('content')
+
+<style>
+    :root {
+        --alma-green: #087443;
+        --alma-dark: #075c36;
+        --alma-light: #eaf7ef;
+        --alma-gold: #f4c542;
+    }
+
+    .profil-title {
+        color: var(--alma-green);
+    }
+
+    .profil-label {
+        display: inline-block;
+        padding: 7px 16px;
+        border-radius: 30px;
+        background: var(--alma-light);
+        color: var(--alma-green);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
+
+    .profil-line {
+        width: 70px;
+        height: 4px;
+        border-radius: 10px;
+        background: var(--alma-gold);
+        margin: 15px auto;
+    }
+
+    .profil-image {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 16px;
+    }
+
+    .profil-card {
+        background: #fff;
+        border: 1px solid #e6eee8;
+        border-radius: 16px;
+        padding: 28px;
+        height: 100%;
+        box-shadow: 0 5px 20px rgba(7, 92, 54, .06);
+        transition: .25s;
+    }
+
+    .profil-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 28px rgba(7, 92, 54, .12);
+    }
+
+    .profil-icon {
+        display: inline-flex;
+        width: 48px;
+        height: 48px;
+        align-items: center;
+        justify-content: center;
+        border-radius: 13px;
+        background: var(--alma-light);
+        color: var(--alma-green);
+        font-size: 21px;
+        margin-bottom: 16px;
+    }
+
+    .profil-misi li {
+        margin-bottom: 15px;
+        padding-left: 5px;
+    }
+
+    .profil-misi li::marker {
+        color: var(--alma-green);
+        font-weight: bold;
+    }
+
+    .profil-banner {
+        background: linear-gradient(135deg, #064e32, #0ca968);
+        border-radius: 18px;
+        color: white;
+        padding: 35px;
+    }
+
+    @media (max-width: 576px) {
+        .profil-image {
+            height: 230px;
         }
 
-        html {
-            scroll-behavior: smooth;
+        .profil-card {
+            padding: 22px;
         }
 
-        body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background: #f4f8f5;
-            color: #263247;
-            line-height: 1.7;
-        }
-
-        a {
-            text-decoration: none;
-        }
-
-        /* NAVBAR */
-        .navbar {
-            background: #075c36;
-            color: white;
-            padding: 15px 7%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 20px;
-            box-shadow: 0 3px 12px rgba(0, 0, 0, .12);
-            position: relative;
-            z-index: 5;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            min-width: 0;
-        }
-
-        .brand img {
-            width: 48px;
-            height: 48px;
-            object-fit: contain;
-            background: white;
-            padding: 4px;
-            border-radius: 50%;
-            flex-shrink: 0;
-        }
-
-        .brand h2 {
-            font-size: 17px;
-            line-height: 1.4;
-        }
-
-        .brand span {
-            display: block;
-            font-size: 12px;
-            font-weight: normal;
-            color: #dcefe3;
-        }
-
-        .nav-link {
-            color: white;
-            background: #ffffff20;
-            padding: 10px 18px;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: .3s;
-            white-space: nowrap;
-        }
-
-        .nav-link:hover {
-            background: white;
-            color: #075c36;
-        }
-
-        /* FOTO BESAR DI ATAS */
-        .school-hero {
-            position: relative;
-            width: 100%;
-            height: 430px;
-            overflow: hidden;
-            background: #087443;
-        }
-
-        .school-hero img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-            display: block;
-        }
-
-        .school-hero::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(
-                to bottom,
-                rgba(4, 45, 25, .05) 15%,
-                rgba(4, 45, 25, .82) 100%
-            );
-        }
-
-        .hero-caption {
-            position: absolute;
-            z-index: 2;
-            bottom: 35px;
-            left: 7%;
-            right: 7%;
-            color: white;
-        }
-
-        .hero-caption .label {
-            display: inline-block;
-            background: #ffffff25;
-            border: 1px solid #ffffff50;
-            padding: 6px 15px;
-            border-radius: 30px;
-            font-size: 12px;
-            letter-spacing: 1px;
-            margin-bottom: 12px;
-        }
-
-        .hero-caption h1 {
-            font-size: clamp(28px, 4vw, 43px);
-            line-height: 1.25;
-            margin-bottom: 8px;
-            overflow-wrap: anywhere;
-        }
-
-        .hero-caption p {
-            color: #e5f5eb;
-            font-size: 16px;
-        }
-
-        /* KONTEN UTAMA */
-        .main-container {
-            max-width: 1150px;
-            width: 90%;
-            margin: 35px auto 55px;
-        }
-
-        .card {
-            background: white;
-            border-radius: 16px;
-            padding: 30px;
-            margin-bottom: 25px;
-            box-shadow: 0 8px 28px rgba(8, 80, 45, .07);
-            border: 1px solid #e1eee5;
-        }
-
-        .section-title {
-            color: #075c36;
-            font-size: 23px;
-            margin-bottom: 22px;
-            padding-bottom: 12px;
-            border-bottom: 2px solid #e5f0e8;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: -2px;
-            width: 65px;
-            height: 3px;
-            background: #0ca968;
-        }
-
-        /* INFORMASI SEKOLAH */
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 17px;
-        }
-
-        .info-box {
-            background: #f6faf7;
-            border: 1px solid #e3eee6;
-            border-radius: 11px;
-            padding: 17px 19px;
-            min-width: 0;
-            transition: .2s;
-        }
-
-        .info-box:hover {
-            border-color: #9ed8b5;
-            background: #eff8f2;
-        }
-
-        .info-box span {
-            display: block;
-            color: #718477;
-            font-size: 13px;
-            margin-bottom: 5px;
-        }
-
-        .info-box strong {
-            display: block;
-            color: #244c35;
-            font-size: 15px;
-            overflow-wrap: anywhere;
-        }
-
-        .full-width {
-            grid-column: 1 / -1;
-        }
-
-        /* SEJARAH DAN DESKRIPSI */
-        .history-card {
-            border-left: 5px solid #0ca968;
-        }
-
-        .history-content,
-        .description-content {
-            color: #536176;
-            font-size: 15px;
-            line-height: 1.9;
-            white-space: pre-line;
-            overflow-wrap: anywhere;
-        }
-
-        /* VISI DAN MISI */
-        .vision-mission {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 22px;
-        }
-
-        .vision-box,
-        .mission-box {
-            padding: 25px;
-            border-radius: 13px;
-            background: #f6faf7;
-            border: 1px solid #e1eee5;
-        }
-
-        .vision-box h3,
-        .mission-box h3 {
-            color: #087443;
-            margin-bottom: 12px;
-            font-size: 19px;
-        }
-
-        .vision-box p,
-        .mission-box p {
-            color: #536176;
-            white-space: pre-line;
-            overflow-wrap: anywhere;
-        }
-
-        /* TOMBOL */
-        .action-area {
-            display: flex;
-            justify-content: center;
-            gap: 14px;
-            flex-wrap: wrap;
-            margin-top: 30px;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 12px 23px;
-            border-radius: 9px;
-            font-size: 14px;
-            font-weight: 600;
-            transition: .25s;
-        }
-
-        .btn-primary {
-            background: #087443;
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: #075c36;
-            transform: translateY(-2px);
-        }
-
-        /* FOOTER */
-        footer {
-            background: #075c36;
-            color: #dcefe3;
-            text-align: center;
+        .profil-banner {
             padding: 25px 20px;
-            font-size: 13px;
         }
+    }
+</style>
 
-        footer p + p {
-            margin-top: 5px;
-        }
+<div class="container py-5">
 
-        /* RESPONSIVE */
-        @media (max-width: 700px) {
-            .navbar {
-                padding: 13px 5%;
-            }
+    {{-- JUDUL --}}
+    <div class="text-center mb-5">
+        <span class="profil-label">PROFIL MADRASAH</span>
 
-            .brand h2 {
-                font-size: 13px;
-            }
+        <h2 class="fw-bold profil-title mt-3 mb-2">
+            Profil MTs Al Muawanah
+        </h2>
 
-            .brand span {
-                font-size: 11px;
-            }
+        <div class="profil-line"></div>
 
-            .brand img {
-                width: 40px;
-                height: 40px;
-            }
+        <p class="text-muted col-md-8 mx-auto mb-0">
+            Mengenal lebih dekat identitas, visi, misi, dan komitmen
+            MTs Al Muawanah dalam membangun generasi berakhlak mulia.
+        </p>
+    </div>
 
-            .nav-link {
-                padding: 8px 11px;
-                font-size: 12px;
-            }
+    {{-- GAMBAR DAN DESKRIPSI --}}
+    <div class="row align-items-center g-4 mb-5">
 
-            .school-hero {
-                height: 300px;
-            }
-
-            .hero-caption {
-                bottom: 23px;
-                left: 5%;
-                right: 5%;
-            }
-
-            .hero-caption p {
-                font-size: 14px;
-            }
-
-            .main-container {
-                width: 92%;
-                margin-top: 25px;
-            }
-
-            .card {
-                padding: 22px 17px;
-            }
-
-            .info-grid,
-            .vision-mission {
-                grid-template-columns: 1fr;
-            }
-
-            .full-width {
-                grid-column: auto;
-            }
-
-            .section-title {
-                font-size: 20px;
-            }
-
-            .vision-box,
-            .mission-box {
-                padding: 20px;
-            }
-
-            .btn {
-                width: 100%;
-                text-align: center;
-            }
-        }
-    </style>
-</head>
-
-<body>
-
-    {{-- NAVBAR --}}
-    <header class="navbar">
-        <div class="brand">
-
-            @if (!empty($profil?->logo))
+        <div class="col-md-5">
+            <div class="p-2 bg-white rounded-4 shadow-sm">
                 <img
-                    src="{{ asset('storage/' . $profil->logo) }}"
-                    alt="Logo MTs Al Muawanah"
-                    onerror="this.onerror=null; this.src='{{ asset('img/logo_alma.jpg') }}';"
+                    src="{{ asset('assets/images/smp.jpg') }}"
+                    class="profil-image"
+                    alt="MTs Al Muawanah"
+                    onerror="this.onerror=null;this.src='{{ asset('assets/images/sekolah.webp') }}';"
                 >
-            @else
-                <img
-                    src="{{ asset('img/logo_alma.jpg') }}"
-                    alt="Logo MTs Al Muawanah"
-                    onerror="this.style.display='none'"
-                >
-            @endif
-
-            <h2>
-                {{ $profil?->nama_sekolah ?? 'MTs Al Muawanah' }}
-                <span>Profil Resmi Sekolah</span>
-            </h2>
-
-        </div>
-    </header>
-
-    {{-- FOTO SEKOLAH DAN JUDUL --}}
-    <section class="school-hero">
-
-        @if (!empty($profil?->foto))
-            <img
-                src="{{ asset('storage/' . $profil->foto) }}"
-                alt="Foto {{ $profil?->nama_sekolah ?? 'Sekolah' }}"
-                onerror="this.onerror=null; this.src='{{ asset('img/sekolah.jpg') }}';"
-            >
-        @else
-            <img
-                src="{{ asset('img/sekolah.jpg') }}"
-                alt="Foto MTs Al Muawanah"
-                onerror="this.style.display='none'"
-            >
-        @endif
-
-        <div class="hero-caption">
-            <span class="label">PROFIL SEKOLAH</span>
-
-            <h1>{{ $profil?->nama_sekolah ?? 'MTs Al Muawanah' }}</h1>
-
-            <p>
-                Mengenal lebih dekat identitas, sejarah, visi, dan misi sekolah.
-            </p>
-        </div>
-
-    </section>
-
-    <main class="main-container">
-
-        {{-- INFORMASI SEKOLAH --}}
-        <section class="card">
-            <h2 class="section-title">Informasi Sekolah</h2>
-
-            <div class="info-grid">
-
-                <div class="info-box">
-                    <span>Nama Sekolah</span>
-                    <strong>{{ $profil?->nama_sekolah ?: 'MTs Al Muawanah' }}</strong>
-                </div>
-
-                <div class="info-box">
-                    <span>NPSN</span>
-                    <strong>{{ $profil?->npsn ?: '-' }}</strong>
-                </div>
-
-                <div class="info-box">
-                    <span>Kepala Sekolah</span>
-                    <strong>{{ $profil?->kepala_sekolah ?: '-' }}</strong>
-                </div>
-
-                <div class="info-box">
-                    <span>Tahun Berdiri</span>
-                    <strong>{{ $profil?->tahun_berdiri ?: '-' }}</strong>
-                </div>
-
-                <div class="info-box">
-                    <span>Status Sekolah</span>
-                    <strong>{{ $profil?->status_sekolah ?: '-' }}</strong>
-                </div>
-
-                <div class="info-box">
-                    <span>Akreditasi</span>
-                    <strong>{{ $profil?->akreditasi ?: '-' }}</strong>
-                </div>
-
-                <div class="info-box">
-                    <span>Email</span>
-                    <strong>{{ $profil?->email ?: '-' }}</strong>
-                </div>
-
-                <div class="info-box">
-                    <span>Telepon</span>
-                    <strong>{{ $profil?->telepon ?: '-' }}</strong>
-                </div>
-
-                <div class="info-box full-width">
-                    <span>Alamat Sekolah</span>
-                    <strong>{{ $profil?->alamat ?: '-' }}</strong>
-                </div>
-
             </div>
-        </section>
-
-        {{-- SEJARAH SEKOLAH --}}
-        @if (filled($profil?->sejarah))
-            <section class="card history-card">
-                <h2 class="section-title">Sejarah Sekolah</h2>
-
-                <div class="history-content">{{ $profil->sejarah }}</div>
-            </section>
-        @endif
-
-        {{-- DESKRIPSI SEKOLAH --}}
-        @if (filled($profil?->deskripsi))
-            <section class="card">
-                <h2 class="section-title">Tentang Sekolah</h2>
-
-                <div class="description-content">{{ $profil->deskripsi }}</div>
-            </section>
-        @endif
-
-        {{-- VISI DAN MISI --}}
-        @if (filled($profil?->visi) || filled($profil?->misi))
-            <section class="card">
-                <h2 class="section-title">Visi dan Misi</h2>
-
-                <div class="vision-mission">
-
-                    @if (filled($profil?->visi))
-                        <div class="vision-box">
-                            <h3>Visi Sekolah</h3>
-                            <p>{{ $profil->visi }}</p>
-                        </div>
-                    @endif
-
-                    @if (filled($profil?->misi))
-                        <div class="mission-box">
-                            <h3>Misi Sekolah</h3>
-                            <p>{{ $profil->misi }}</p>
-                        </div>
-                    @endif
-
-                </div>
-            </section>
-        @endif
-
-        {{-- TOMBOL KEMBALI --}}
-        <div class="action-area">
-            <a href="{{ url('/') }}" class="btn btn-primary">
-                Kembali ke Beranda
-            </a>
         </div>
 
-    </main>
+        <div class="col-md-7">
+            <span class="profil-label mb-3">TENTANG KAMI</span>
 
-    {{-- FOOTER --}}
-    <footer>
-        <p>
-            &copy; {{ date('Y') }}
-            {{ $profil?->nama_sekolah ?? 'MTs Al Muawanah' }}
+            <h3 class="fw-bold profil-title mb-3">
+                Mencetak Generasi Berilmu dan Berakhlak Mulia
+            </h3>
+
+            <p class="text-secondary">
+                MTs Al Muawanah merupakan lembaga pendidikan yang berkomitmen
+                mendukung perkembangan peserta didik melalui pendidikan,
+                pembentukan karakter, serta penanaman nilai-nilai keislaman.
+            </p>
+
+            <p class="text-secondary mb-4">
+                Kami berupaya menciptakan lingkungan belajar yang nyaman,
+                kondusif, dan mendukung pengembangan potensi akademik maupun
+                nonakademik agar peserta didik tumbuh menjadi generasi yang
+                mandiri, berprestasi, dan bertanggung jawab.
+            </p>
+
+            <div class="d-flex align-items-center gap-3">
+                <div class="profil-icon mb-0">
+                    <i class="fa-solid fa-book-open"></i>
+                </div>
+
+                <div>
+                    <h6 class="fw-bold profil-title mb-1">
+                        Pendidikan Berkualitas
+                    </h6>
+                    <p class="text-muted small mb-0">
+                        Belajar, bertumbuh, dan meraih prestasi bersama.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    {{-- VISI MISI --}}
+    <div class="text-center mb-4">
+        <span class="profil-label">ARAH DAN TUJUAN</span>
+        <h3 class="fw-bold profil-title mt-3">Visi dan Misi Madrasah</h3>
+        <p class="text-muted">
+            Landasan dalam melaksanakan pendidikan dan membentuk karakter siswa.
         </p>
+    </div>
 
-        <p>
-            {{ $profil?->alamat ?? 'Alamat sekolah belum diisi' }}
+    <div class="row g-4 mb-5">
+
+        {{-- VISI --}}
+        <div class="col-md-5">
+            <div class="profil-card">
+                <div class="profil-icon">
+                    <i class="fa-solid fa-eye"></i>
+                </div>
+
+                <h4 class="fw-bold profil-title mb-3">
+                    Visi Madrasah
+                </h4>
+
+                <p class="fst-italic text-secondary mb-0">
+                    "Terwujudnya peserta didik yang beriman, bertakwa,
+                    berakhlak mulia, berprestasi, mandiri, dan berwawasan
+                    lingkungan."
+                </p>
+            </div>
+        </div>
+
+        {{-- MISI --}}
+        <div class="col-md-7">
+            <div class="profil-card">
+                <div class="profil-icon">
+                    <i class="fa-solid fa-list-check"></i>
+                </div>
+
+                <h4 class="fw-bold profil-title mb-3">
+                    Misi Madrasah
+                </h4>
+
+                <ol class="profil-misi text-secondary mb-0 ps-3">
+                    <li>
+                        Menumbuhkan keimanan dan ketakwaan kepada Allah SWT
+                        melalui kegiatan keagamaan dan pembiasaan akhlak mulia.
+                    </li>
+
+                    <li>
+                        Melaksanakan pembelajaran yang efektif, kreatif,
+                        inovatif, dan berorientasi pada pengembangan potensi siswa.
+                    </li>
+
+                    <li>
+                        Meningkatkan prestasi akademik dan nonakademik melalui
+                        kegiatan pembelajaran dan ekstrakurikuler.
+                    </li>
+
+                    <li>
+                        Membentuk peserta didik yang disiplin, mandiri,
+                        bertanggung jawab, dan menghormati sesama.
+                    </li>
+
+                    <li>
+                        Mewujudkan lingkungan madrasah yang bersih, aman,
+                        nyaman, sehat, dan mendukung proses pembelajaran.
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+    </div>
+
+    {{-- NILAI MADRASAH --}}
+    <div class="row g-4 mb-5">
+
+        <div class="col-sm-6 col-lg-4">
+            <div class="profil-card text-center">
+                <div class="profil-icon">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+                <h5 class="fw-bold profil-title">Akhlak Mulia</h5>
+                <p class="text-secondary mb-0">
+                    Menanamkan sopan santun, kepedulian, dan perilaku terpuji
+                    dalam kehidupan sehari-hari.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-4">
+            <div class="profil-card text-center">
+                <div class="profil-icon">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <h5 class="fw-bold profil-title">Berprestasi</h5>
+                <p class="text-secondary mb-0">
+                    Mendorong siswa untuk terus belajar, berkarya, dan
+                    mengembangkan kemampuan diri.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-4">
+            <div class="profil-card text-center">
+                <div class="profil-icon">
+                    <i class="fa-solid fa-people-group"></i>
+                </div>
+                <h5 class="fw-bold profil-title">Kebersamaan</h5>
+                <p class="text-secondary mb-0">
+                    Membangun lingkungan pendidikan yang saling menghargai,
+                    bekerja sama, dan mendukung satu sama lain.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    {{-- PENUTUP --}}
+    <div class="profil-banner text-center">
+        <i class="fa-solid fa-mosque fs-1 mb-3"
+           style="color:var(--alma-gold, #f4c542)"></i>
+
+        <h3 class="fw-bold mb-3">
+            Bersama MTs Al Muawanah, Raih Masa Depan Gemilang
+        </h3>
+
+        <p class="mb-0">
+            Membangun generasi yang berilmu, beriman, berkarakter,
+            dan siap menghadapi masa depan.
         </p>
-    </footer>
+    </div>
 
-</body>
-</html>
+</div>
+
+@endsection
